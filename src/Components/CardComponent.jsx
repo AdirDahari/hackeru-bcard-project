@@ -36,6 +36,9 @@ const CardComponent = ({
   const handleEditClick = () => {
     onEditCard(_id);
   };
+  const handleLikeClick = () => {
+    onLikeCard(_id);
+  };
   return (
     <Card>
       <CardActionArea>
@@ -77,7 +80,7 @@ const CardComponent = ({
             <IconButton onClick={handleDeleteCardClick}>
               <DeleteIcon />
             </IconButton>
-            <IconButton>
+            <IconButton onClick={handleLikeClick}>
               <FavoriteIcon />
             </IconButton>
           </Box>
