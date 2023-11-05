@@ -9,9 +9,12 @@ const darkTheme = createSlice({
   initialState,
   reducers: {
     //collection of functions to setState
-    changeTheme(state) {
-      state.darkTheme = !state.darkTheme;
+    darkTheme(state) {
+      state.darkTheme = true;
     },
+    lightTheme(state) {
+      state.darkTheme = false;
+    }
   },
 });
 

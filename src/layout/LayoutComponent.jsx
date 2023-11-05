@@ -12,6 +12,7 @@ const LayoutComponent = ({ children }) => {
   // const [isDarkTheme, setIsDarkTheme] = useState(false);
   const isDarkTheme = useSelector((bigPie) => bigPie.darkThemeSlice.darkTheme);
   const dispatch = useDispatch();
+  const userData = useSelector((bigPie) => bigPie.authSlice.userData);
 
   const themes = tmc({
     "text.headerColor": "!#b219e6",
@@ -36,7 +37,14 @@ const LayoutComponent = ({ children }) => {
   // });
 
   const handleThemeChange = (checked) => {
-    dispatch(darkThemeActions.changeTheme());
+    checked
+      ? dispatch(darkThemeActions.darkTheme())
+      : dispatch(darkThemeActions.lightTheme());
+
+    // BUG!!!
+    // if (userData) {
+    //   localStorage.setItem(userData._id, checked);
+    // }
   };
 
   return (

@@ -16,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../../store/authSlice";
 import CopyrightComponent from "./ui/CopyrightComponent";
 import ROUTES from "../../routes/ROUTES";
@@ -38,7 +38,6 @@ const LoginPage = () => {
   const [rememberMe, setRememberMe] = useState(true);
   const [errorsState, setErrorsState] = useState(null);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const autoLogin = useAutoLogin();
   /* logic lvl for js */
   const handleSubmit = async (event) => {
@@ -48,16 +47,13 @@ const LoginPage = () => {
         email: emailValue,
         password: passwordValue,
       });
-      console.log("joiResponse", joiResponse);
       setErrorsState(joiResponse);
       if (joiResponse) return;
       let { data } = await axios.post("/users/login", {
         email: emailValue,
         password: passwordValue,
       });
-      // localStorage.setItem("token", data);
       storeToken(data, rememberMe);
-      console.log("data from login", data);
       toast("You logged in successfully 👌", {
         position: "top-right",
         autoClose: 5000,
