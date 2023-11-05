@@ -35,7 +35,6 @@ const HomePage = () => {
   useEffect(() => {
     if (!initialDataFromServer.length) return;
     const filter = query.filter ? query.filter : "";
-    console.log("filter", filter);
     setDataFromServer(
       initialDataFromServer.filter((card) => card.title.startsWith(filter))
     );
@@ -75,7 +74,7 @@ const HomePage = () => {
               address={`${card.address.city}, ${card.address.street} ${card.address.houseNumber}`}
               img={card.image.url}
               alt={card.image.alt}
-              like={card.likes}
+              like={false}
               cardNumber={card.cardNumber}
               onDeleteCard={handleDeleteCard}
               onEditCard={handleEditCard}

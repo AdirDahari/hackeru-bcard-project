@@ -1,17 +1,8 @@
 import { Fragment, useState } from "react";
 
-import {
-  BottomNavigation,
-  BottomNavigationAction,
-  Divider,
-  Typography,
-} from "@mui/material";
-import RestoreIcon from "@mui/icons-material/Restore";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
+import { BottomNavigation, Divider } from "@mui/material";
 import myLinks from "../myLinks";
 import NavLinkComponent from "../header/NavLinkComponent";
-import { NavLink } from "react-router-dom";
 import nextKey from "generate-my-key";
 
 const FooterComponent = () => {
