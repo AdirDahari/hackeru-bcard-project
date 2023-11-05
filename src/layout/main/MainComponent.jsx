@@ -1,6 +1,7 @@
 import { Container } from "@mui/material";
 
-const Main = ({ children }) => {
+const MainComponent = ({ children }) => {
   return <Container>{children}</Container>;
 };
-export default Main;
+
+export default MainComponent;

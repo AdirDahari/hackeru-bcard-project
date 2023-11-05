@@ -1,3 +1,5 @@
+import * as React from "react";
+// import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -13,12 +15,21 @@ import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import { Switch } from "@mui/material";
+// import { Link } from "react-router-dom";
+// import ROUTES from "../../routes/ROUTES";
+// import NavLinkComponent from "./NavLinkComponent";
+// import nextKey from "generate-my-key";
+// import myLinks, {
+//   alwaysLinks,
+//   loggedInLinks,
+//   loggedOutLinks,
+// } from "../myLinks";
 
-// import Search from "./ui/Search";
-// import SearchIconWrapper from "./ui/SearchIconWrapper";
-// import StyledInputBase from "./ui/StyledInputBase";
+import Search from "./ui/Search";
+import SearchIconWrapper from "./ui/SearchIconWrapper";
+import StyledInputBase from "./ui/StyledInputBase";
 import Links from "./ui/Links";
-// import LeftDrawerComponent from "./ui/LeftDrawerComponent";
+import LeftDrawerComponent from "./ui/LeftDrawerComponent";
 import { useState } from "react";
 
 const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
@@ -154,7 +165,7 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
             LOGO
           </Typography>
           <Links />
-          {/* <Search>
+          <Search>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -162,7 +173,7 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
             />
-          </Search> */}
+          </Search>
           <Box
             sx={{
               my: 2,
@@ -170,9 +181,9 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
             }}
           >
             <Typography sx={{ display: { xs: "none", md: "inline" } }}>
-              {false ? "Dark" : "Light"} Mode
+              {isDarkTheme ? "Dark" : "Light"} Mode
             </Typography>
-            <Switch checked={false} />
+            <Switch checked={isDarkTheme} onChange={handleThemeChange} />
           </Box>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
@@ -222,10 +233,10 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
-      {/* <LeftDrawerComponent
+      <LeftDrawerComponent
         isOpen={isOpen}
         onCloseDrawer={handleCloseDrawerClick}
-      /> */}
+      />
     </Box>
   );
 };

@@ -1,59 +1,66 @@
-import { Grid } from "@mui/material";
-import axios from "axios";
 import { useEffect, useState } from "react";
-import CardComponent from "../../Components/CardComponent";
+import { Container, Grid } from "@mui/material";
 import nextKey from "generate-my-key";
+import CardComponent from "../../components/CardComponent";
+import { useNavigate } from "react-router-dom";
+import ROUTES from "../../routes/ROUTES";
+import axios from "axios";
+import homePageNormalization from "./homePageNormalization";
+import { useSelector } from "react-redux";
 
 const HomePage = () => {
   const [dataFromServer, setDataFromServer] = useState([]);
+  const navigate = useNavigate();
+  const userData = useSelector((bigPie) => bigPie.authSlice.userData);
   useEffect(() => {
-    (async () => {
-      try {
-        const { data } = await axios.get("/cards");
-        console.log(data); //log
+    axios
+      .get("/cards")
+      .then(({ data }) => {
+        if (userData) data = homePageNormalization(data, userData._id);
+        console.log("data", data);
         setDataFromServer(data);
-      } catch (err) {
-        //todo
-        console.log("err", err); //log
-      }
-    })();
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
   }, []);
-
   const handleDeleteCard = (_id) => {
-    console.log(_id, "handleDeleteCard");
-    //todo
+    console.log("_id to delete (HomePage)", _id);
+    setDataFromServer((dataFromServerCopy) =>
+      dataFromServerCopy.filter((card) => card._id != _id)
+    );
+    // dataFromServer = dataFromServer.filter((card) => card._id != _id);
+    //return true for all the cards that has id that not equal to the id we want to delete
+    // console.log("dataFromServer", dataFromServer);
   };
-
   const handleEditCard = (_id) => {
-    console.log(_id, "handleEditCard");
-    //todo
+    // console.log("id to edit", _id);
+    navigate(`${ROUTES.EDITCARD}/${_id}`);
   };
-
-  const handleLikeCard = (_id) => {
-    console.log(_id, "handleLikeCard");
-    //todo
-  };
-
+  console.log(dataFromServer[0]);
   return (
-    <Grid container spacing={2} sx={{ textAlign: "center" }}>
-      {dataFromServer.map((card) => (
-        <Grid item xs={12} sm={6} md={4} lg={3} key={nextKey()}>
-          <CardComponent
-            _id={card._id}
-            title={card.title}
-            subTitle={card.subtitle}
-            phone={card.phone}
-            address={`${card.address.city}, ${card.address.street} ${card.address.houseNumber}`}
-            img={card.image.url}
-            alt={card.image.alt}
-            cardNumber={card.cardNumber}
-            onDeleteCard={handleDeleteCard}
-            onEditCard={handleEditCard}
-            onLikeCard={handleLikeCard}
-          />
-        </Grid>
-      ))}
-    </Grid>
+    <Container>
+      <Grid container spacing={2}>
+        {dataFromServer.map((card) => (
+          <Grid item key={nextKey()} xs={12} sm={6} md={4} lg={3}>
+            <CardComponent
+              _id={card._id}
+              title={card.title}
+              subTitle={card.subtitle}
+              phone={card.phone}
+              address={`${card.address.city}, ${card.address.street} ${card.address.houseNumber}`}
+              img={card.image.url}
+              alt={card.image.alt}
+              like={card.likes}
+              cardNumber={card.cardNumber}
+              onDeleteCard={handleDeleteCard}
+              onEditCard={handleEditCard}
+            />
+          </Grid>
+        ))}
+      </Grid>
+    </Container>
   );
 };
+
 export default HomePage;
