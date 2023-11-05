@@ -1,13 +1,13 @@
-import { Fragment } from "react";
-import NavigationBar from "./Header/NavigationBar";
 import Main from "./Main/Main";
+import Header from "./Header/Header";
+import Links from "./Header/ui/Links";
 
 const Layout = ({ children }) => {
   return (
-    <Fragment>
-      <NavigationBar />
+    <Header>
+      <Header />
       <Main>{children}</Main>
-    </Fragment>
+    </Header>
   );
 };
 export default Layout;

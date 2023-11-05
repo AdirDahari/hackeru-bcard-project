@@ -20,17 +20,17 @@ const HomePage = () => {
   }, []);
 
   const handleDeleteCard = (_id) => {
-    console.log("handleDeleteCard");
+    console.log(_id, "handleDeleteCard");
     //todo
   };
 
   const handleEditCard = (_id) => {
-    console.log("handleEditCard");
+    console.log(_id, "handleEditCard");
     //todo
   };
 
   const handleLikeCard = (_id) => {
-    console.log("handleLikeCard");
+    console.log(_id, "handleLikeCard");
     //todo
   };
 
