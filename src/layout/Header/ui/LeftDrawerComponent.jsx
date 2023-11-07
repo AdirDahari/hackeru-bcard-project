@@ -1,19 +1,11 @@
-import {
-  Box,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Divider,
-  Button,
-  Drawer,
-  ListItemIcon,
-} from "@mui/material";
-import InboxIcon from "@mui/icons-material/Inbox";
-import MailIcon from "@mui/icons-material/Mail";
-import { useState, Fragment } from "react";
+import { Box, List, Drawer } from "@mui/material";
+import { alwaysLinks, loggedInLinks, loggedOutLinks } from "../../myLinks";
+import NavLinkComponent from "../NavLinkComponent";
+import { useSelector } from "react-redux";
 
 const LeftDrawerComponent = ({ isOpen, onCloseDrawer }) => {
+  const loggedIn = useSelector((bigPie) => bigPie.authSlice.loggedIn);
+
   const list = () => (
     <Box
       sx={{ width: { auto: 250 } }}
@@ -22,29 +14,23 @@ const LeftDrawerComponent = ({ isOpen, onCloseDrawer }) => {
       onKeyDown={onCloseDrawer}
     >
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
+        {alwaysLinks.map((myLink) => (
+          <NavLinkComponent key={myLink.children} to={myLink.to}>
+            {myLink.children}
+          </NavLinkComponent>
         ))}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        {loggedIn &&
+          loggedInLinks.map((myLink) => (
+            <NavLinkComponent key={myLink.children} to={myLink.to}>
+              {myLink.children}
+            </NavLinkComponent>
+          ))}
+        {!loggedIn &&
+          loggedOutLinks.map((myLink) => (
+            <NavLinkComponent key={myLink.children} to={myLink.to}>
+              {myLink.children}
+            </NavLinkComponent>
+          ))}
       </List>
     </Box>
   );
