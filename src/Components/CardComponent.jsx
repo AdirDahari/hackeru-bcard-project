@@ -14,6 +14,8 @@ import CreateIcon from "@mui/icons-material/Create";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
+import CardIconsComponent from "./CardIconsComponent";
 
 const CardComponent = ({
   _id,
@@ -23,11 +25,13 @@ const CardComponent = ({
   address,
   img,
   alt,
-  like,
+  isLike,
   cardNumber,
   onDeleteCard,
   onEditCard,
+  onLikeCard,
 }) => {
+  const loggedIn = useSelector((bigPie) => bigPie.authSlice.loggedIn);
   // console.log("CardComponent");
   const handlePhoneClick = () => {
     console.log("you clicked on phone btn");
@@ -39,6 +43,10 @@ const CardComponent = ({
   const handleClickEditCard = () => {
     // console.log("move to edit card page");
     onEditCard(_id);
+  };
+  const handleLikeCard = () => {
+    console.log("handleLikeCard");
+    onLikeCard(_id);
   };
   return (
     <Card>
@@ -68,7 +76,7 @@ const CardComponent = ({
             {cardNumber}
           </Typography>
         </Box>
-        <Box display="flex" justifyContent="space-between">
+        {/* <Box display="flex" justifyContent="space-between">
           <Box>
             <IconButton onClick={handlePhoneClick}>
               <PhoneIcon />
@@ -85,7 +93,15 @@ const CardComponent = ({
               <FavoriteIcon color={like ? "favActive" : ""} />
             </IconButton>
           </Box>
-        </Box>
+        </Box> */}
+        <CardIconsComponent
+          handleClickEditCard={handleClickEditCard}
+          handlePhoneClick={handlePhoneClick}
+          handleDeleteCardClick={handleDeleteCardClick}
+          handleLikeCard={handleLikeCard}
+          _id={_id}
+          likes={isLike}
+        />
       </CardContent>
     </Card>
   );

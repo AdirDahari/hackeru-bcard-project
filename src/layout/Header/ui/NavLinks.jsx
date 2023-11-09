@@ -1,27 +1,43 @@
 import { AccountCircle } from "@mui/icons-material";
 import { IconButton, MenuItem, Typography } from "@mui/material";
 import { loggedInLinks, loggedOutLinks } from "../../myLinks";
-
-const menuId = "primary-search-account-menu";
+import { useSelector } from "react-redux";
+import { Fragment } from "react";
+import { NavLink } from "react-router-dom";
 
 const NavLinks = ({ isMoblie }) => {
+  const loggedIn = useSelector((bigPie) => bigPie.authSlice.loggedIn);
   if (isMoblie)
     return (
-      <MenuItem>
-        <IconButton size="large" edge="end" color="inherit">
-          <AccountCircle />
-        </IconButton>
-        <Typography>&nbsp; Profile</Typography>
-      </MenuItem>
+      <Fragment>
+        {loggedIn &&
+          loggedInLinks.map((myLink, index) => (
+            <MenuItem to={myLink.to} key={index}>
+              <IconButton size="large" edge="end" color="inherit">
+                {index === 0 ? <AccountCircle /> : <AccountCircle />}
+              </IconButton>
+              <Typography>&nbsp; {myLink.children}</Typography>
+            </MenuItem>
+          ))}
+      </Fragment>
     );
   else
     return (
-      <MenuItem sx={{ display: { xs: "none", md: "flex" } }}>
-        <IconButton size="large" edge="end" color="inherit">
-          <AccountCircle />
-        </IconButton>
-        <Typography>&nbsp; Profile</Typography>
-      </MenuItem>
+      <Fragment>
+        {!loggedIn &&
+          loggedOutLinks.map((myLink, index) => (
+            <MenuItem
+              key={index}
+              to={myLink.to}
+              sx={{ display: { xs: "none", md: "flex" } }}
+            >
+              <IconButton size="large" edge="end" color="inherit">
+                {index === 0 ? <AccountCircle /> : <AccountCircle />}
+              </IconButton>
+              <Typography>&nbsp; {myLink.children}</Typography>
+            </MenuItem>
+          ))}
+      </Fragment>
     );
 };
 export default NavLinks;

@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Container, Grid } from "@mui/material";
+import { Fragment, useEffect, useState } from "react";
+import { Container, Divider, Grid, Typography } from "@mui/material";
 import nextKey from "generate-my-key";
 import CardComponent from "../../components/CardComponent";
 import { useNavigate } from "react-router-dom";
@@ -16,8 +16,8 @@ const HomePage = () => {
   const [dataFromServer, setDataFromServer] = useState([]);
   const navigate = useNavigate();
   const userData = useSelector((bigPie) => bigPie.authSlice.userData);
+  const loggedIn = useSelector((bigPie) => bigPie.authSlice.loggedIn);
   const query = useQueryParams();
-  const dispatch = useDispatch();
   useEffect(() => {
     axios
       .get("/cards")
@@ -60,25 +60,43 @@ const HomePage = () => {
   const handleEditCard = (_id) => {
     navigate(`${ROUTES.EDITCARD}/${_id}`);
   };
+  const handleLikeCard = (_id) => {
+    let tempData = [...dataFromServer];
+    console.log("tempData", tempData);
+    for (let data of tempData) {
+      if (data._id === _id) {
+        data.likes = !data.likes;
+      }
+    }
+    setDataFromServer(tempData);
+  };
 
   return (
     <Container>
+      <Typography variant="h1">Card Page</Typography>
+      <Typography variant="h4">Here you can find business cards</Typography>
+      <Divider sx={{ m: 2 }} />
       <Grid container spacing={2}>
-        {dataFromServer.map((card) => (
+        {dataFromServer.map((card, index) => (
           <Grid item key={card._id} xs={12} sm={6} md={4} lg={3}>
-            <CardComponent
-              _id={card._id}
-              title={card.title}
-              subTitle={card.subtitle}
-              phone={card.phone}
-              address={`${card.address.city}, ${card.address.street} ${card.address.houseNumber}`}
-              img={card.image.url}
-              alt={card.image.alt}
-              like={false}
-              cardNumber={card.cardNumber}
-              onDeleteCard={handleDeleteCard}
-              onEditCard={handleEditCard}
-            />
+            {index < 10 ? (
+              <CardComponent
+                _id={card._id}
+                title={card.title}
+                subTitle={card.subtitle}
+                phone={card.phone}
+                address={`${card.address.city}, ${card.address.street} ${card.address.houseNumber}`}
+                img={card.image.url}
+                alt={card.image.alt}
+                isLike={loggedIn ? card.likes : false}
+                cardNumber={card.cardNumber}
+                onDeleteCard={handleDeleteCard}
+                onEditCard={handleEditCard}
+                onLikeCard={handleLikeCard}
+              />
+            ) : (
+              <Fragment></Fragment>
+            )}
           </Grid>
         ))}
       </Grid>
