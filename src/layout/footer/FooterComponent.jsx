@@ -24,7 +24,7 @@ const FooterComponent = () => {
             {mylink.children}
           </NavLinkComponent>
         ))}
-        {loggedIn &&
+        {/* {loggedIn &&
           loggedInLinks.map((mylink) => (
             <NavLinkComponent to={mylink.to} key={nextKey()}>
               {mylink.children}
@@ -35,7 +35,7 @@ const FooterComponent = () => {
             <NavLinkComponent to={mylink.to} key={nextKey()}>
               {mylink.children}
             </NavLinkComponent>
-          ))}
+          ))} */}
       </BottomNavigation>
     </Fragment>
   );

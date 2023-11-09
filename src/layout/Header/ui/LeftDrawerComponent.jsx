@@ -19,7 +19,7 @@ const LeftDrawerComponent = ({ isOpen, onCloseDrawer }) => {
             {myLink.children}
           </NavLinkComponent>
         ))}
-        {loggedIn &&
+        {/* {loggedIn &&
           loggedInLinks.map((myLink) => (
             <NavLinkComponent key={myLink.children} to={myLink.to}>
               {myLink.children}
@@ -30,7 +30,7 @@ const LeftDrawerComponent = ({ isOpen, onCloseDrawer }) => {
             <NavLinkComponent key={myLink.children} to={myLink.to}>
               {myLink.children}
             </NavLinkComponent>
-          ))}
+          ))} */}
       </List>
     </Box>
   );

@@ -1,14 +1,12 @@
 import { Fragment, useEffect, useState } from "react";
 import { Container, Divider, Grid, Typography } from "@mui/material";
-import nextKey from "generate-my-key";
 import CardComponent from "../../components/CardComponent";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/ROUTES";
 import axios from "axios";
 import homePageNormalization from "./homePageNormalization";
-import { useDispatch, useSelector } from "react-redux";
 import useQueryParams from "../../hooks/useQueryParams";
-import { darkThemeActions } from "../../store/darkThemeSlice";
+import { useSelector } from "react-redux";
 
 let initialDataFromServer = [];
 
@@ -61,14 +59,15 @@ const HomePage = () => {
     navigate(`${ROUTES.EDITCARD}/${_id}`);
   };
   const handleLikeCard = (_id) => {
-    let tempData = [...dataFromServer];
-    console.log("tempData", tempData);
-    for (let data of tempData) {
-      if (data._id === _id) {
-        data.likes = !data.likes;
-      }
-    }
-    setDataFromServer(tempData);
+    setDataFromServer((currentData) => {
+      currentData.map((data) => {
+        if (data._id === _id) {
+          data.likes = !data.likes;
+          return;
+        }
+      });
+      return [...currentData];
+    });
   };
 
   return (
@@ -79,7 +78,7 @@ const HomePage = () => {
       <Grid container spacing={2}>
         {dataFromServer.map((card, index) => (
           <Grid item key={card._id} xs={12} sm={6} md={4} lg={3}>
-            {index < 10 ? (
+            {index < 12 ? (
               <CardComponent
                 _id={card._id}
                 title={card.title}

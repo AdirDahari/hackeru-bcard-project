@@ -13,7 +13,7 @@ import Links from "./ui/Links";
 import LeftDrawerComponent from "./ui/LeftDrawerComponent";
 import { useState } from "react";
 import FilterComponent from "./ui/FilterComponent";
-import NavLinks from "./ui/NavLinks";
+import NavIconLinks from "./ui/NavIconLinks";
 
 const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -87,7 +87,7 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <NavLinks isMoblie={true} />
+      <NavIconLinks isMoblie={true} />
     </Menu>
   );
 
@@ -141,7 +141,7 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
             </IconButton>
             <Typography>&nbsp; Profile</Typography>
           </MenuItem> */}
-          <NavLinks isMoblie={false} />
+          <NavIconLinks isMoblie={false} />
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
