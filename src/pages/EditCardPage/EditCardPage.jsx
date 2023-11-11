@@ -53,6 +53,27 @@ const EditCardPage = () => {
       console.log("err", err.response);
     }
   };
+
+  const handleResetClick = () => {
+    setInputValue({
+      title: "",
+      subtitle: "",
+      phone: "",
+      add: "",
+      mail: "",
+      description: "",
+      web: "",
+      url: "",
+      alt: "",
+      state: "",
+      country: "",
+      city: "",
+      street: "",
+      houseNumber: "",
+      zip: "",
+    });
+  };
+
   return (
     <Container sx={{ padding: "50px" }}>
       <Typography variant="h2" sx={{ mb: 1, padding: "10px", pb: "0px" }}>
@@ -224,20 +245,19 @@ const EditCardPage = () => {
           </Button>
         </Grid>
         <Grid item xs>
-          <Link to={ROUTES.HOME}>
-            <Button
-              variant="outlined"
-              sx={{
-                mt: 2,
-                width: "100%",
-                ml: "0%",
-                bgcolor: "navy",
-                color: "gray",
-              }}
-            >
-              Discard Changes
-            </Button>
-          </Link>
+          <Button
+            onClick={handleResetClick}
+            variant="outlined"
+            sx={{
+              mt: 2,
+              width: "100%",
+              ml: "0%",
+              bgcolor: "navy",
+              color: "gray",
+            }}
+          >
+            Reset
+          </Button>
         </Grid>
       </Grid>
     </Container>

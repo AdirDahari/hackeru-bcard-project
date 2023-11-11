@@ -7,3 +7,4 @@ Fix nav warning
 Popup card details
 Props types
 All Admin shit
+Style
