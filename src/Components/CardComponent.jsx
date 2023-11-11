@@ -27,6 +27,8 @@ const CardComponent = ({
   alt,
   isLike,
   cardNumber,
+  bizNumber,
+  user_id,
   onDeleteCard,
   onEditCard,
   onLikeCard,
@@ -38,7 +40,7 @@ const CardComponent = ({
   };
   const handleDeleteCardClick = () => {
     console.log("_id to delete (CardComponent)", _id);
-    onDeleteCard(_id);
+    onDeleteCard(_id, bizNumber);
   };
   const handleClickEditCard = () => {
     // console.log("move to edit card page");
@@ -99,7 +101,7 @@ const CardComponent = ({
           handlePhoneClick={handlePhoneClick}
           handleDeleteCardClick={handleDeleteCardClick}
           handleLikeCard={handleLikeCard}
-          _id={_id}
+          user_id={user_id}
           likes={isLike}
         />
       </CardContent>

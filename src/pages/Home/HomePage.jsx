@@ -49,11 +49,20 @@ const HomePage = () => {
   //   }
   // }, [userData]);
 
-  const handleDeleteCard = (_id) => {
+  const handleDeleteCard = async (_id, bizNumber) => {
     console.log("_id to delete (HomePage)", _id);
-    setDataFromServer((dataFromServerCopy) =>
-      dataFromServerCopy.filter((card) => card._id !== _id)
-    );
+    try {
+      let request = {
+        bizNumber: +bizNumber,
+      };
+      console.log(request);
+      await axios.delete("/cards/" + _id, request);
+      setDataFromServer((dataFromServerCopy) =>
+        dataFromServerCopy.filter((card) => card._id !== _id)
+      );
+    } catch (err) {
+      console.log("handleDeleteCard err", err);
+    }
   };
   const handleEditCard = (_id) => {
     navigate(`${ROUTES.EDITCARD}/${_id}`);
@@ -78,24 +87,26 @@ const HomePage = () => {
       <Grid container spacing={2}>
         {dataFromServer.map((card, index) => (
           <Grid item key={card._id} xs={12} sm={6} md={4} lg={3}>
-            {index < 12 ? (
-              <CardComponent
-                _id={card._id}
-                title={card.title}
-                subTitle={card.subtitle}
-                phone={card.phone}
-                address={`${card.address.city}, ${card.address.street} ${card.address.houseNumber}`}
-                img={card.image.url}
-                alt={card.image.alt}
-                isLike={loggedIn ? card.likes : false}
-                cardNumber={card.cardNumber}
-                onDeleteCard={handleDeleteCard}
-                onEditCard={handleEditCard}
-                onLikeCard={handleLikeCard}
-              />
-            ) : (
+            {/* {index < 12 ? ( */}
+            <CardComponent
+              title={card.title}
+              subTitle={card.subtitle}
+              phone={card.phone}
+              address={`${card.address.city}, ${card.address.street} ${card.address.houseNumber}`}
+              img={card.image.url}
+              alt={card.image.alt}
+              _id={card._id}
+              user_id={card.user_id}
+              bizNumber={card.bizNumber}
+              isLike={loggedIn ? card.likes : false}
+              cardNumber={card.cardNumber}
+              onDeleteCard={handleDeleteCard}
+              onEditCard={handleEditCard}
+              onLikeCard={handleLikeCard}
+            />
+            {/* ) : (
               <Fragment></Fragment>
-            )}
+            )} */}
           </Grid>
         ))}
       </Grid>

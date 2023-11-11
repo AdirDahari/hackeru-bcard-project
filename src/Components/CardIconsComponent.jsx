@@ -10,15 +10,16 @@ const CardIconsComponent = ({
   handleClickEditCard,
   handleDeleteCardClick,
   handleLikeCard,
-  _id,
+  user_id,
   likes,
 }) => {
   const loggedIn = useSelector((bigPie) => bigPie.authSlice.loggedIn);
   const userData = useSelector((bigPie) => bigPie.authSlice.userData);
+
   return (
     <Box display="flex" justifyContent="space-between">
       {(loggedIn && userData.isAdmin) ||
-        (loggedIn && userData._id === _id && (
+        (loggedIn && userData._id === user_id && (
           <Box>
             <IconButton onClick={handleDeleteCardClick}>
               <DeleteIcon />

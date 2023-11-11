@@ -1,17 +1,9 @@
-1. Footer - dinamic. 
-2. Register
-3. Card component.
-4. Nav bar - dinamic.
-5. Login.
-6. dark theme.
-7. Create card.
-8. Edit card.
-9. Favorite cards page.
-10. Validation.
-11. Router.
-12. Messages.
-13. Store.
-14. Axios - Token - Service.
-15. Links.
-16. Auto login.
-17. Guard.
+Errors Messages
+About page
+Profile page
+Fav page
+Fix likes
+Fix nav warning
+Popup card details
+Props types
+All Admin shit

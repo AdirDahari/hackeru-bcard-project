@@ -12,6 +12,8 @@ import Typography from "@mui/material/Typography";
 import axios from "axios";
 import { normalizeData } from "./normalizeData";
 import { validateRegister } from "../../validation/registerValidation";
+import { NavLink, useNavigate } from "react-router-dom";
+import ROUTES from "../../routes/ROUTES";
 
 const RegisterPage = () => {
   const [inputsValue, setInputsValue] = useState({
@@ -30,6 +32,7 @@ const RegisterPage = () => {
     houseNumber: "",
     zip: "",
   });
+  const navigate = useNavigate();
 
   const handleInputsChange = (e) => {
     setInputsValue((currentState) => ({
@@ -40,13 +43,13 @@ const RegisterPage = () => {
   const handleSubmit = async (event) => {
     try {
       event.preventDefault();
-      // inputsValue.isBusiness = false;
       const errors = validateRegister(inputsValue);
       console.log(errors);
       if (errors) return;
       let request = normalizeData(inputsValue);
       const { data } = await axios.post("/users", request);
       console.log("data", data);
+      navigate(ROUTES.HOME);
     } catch (err) {
       console.log(err);
     }
@@ -106,7 +109,7 @@ const RegisterPage = () => {
               onChange={handleInputsChange}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} sm={6}>
             <TextField
               required
               fullWidth
@@ -118,7 +121,7 @@ const RegisterPage = () => {
               onChange={handleInputsChange}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} sm={6}>
             <TextField
               required
               fullWidth
@@ -131,7 +134,7 @@ const RegisterPage = () => {
               onChange={handleInputsChange}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} sm={6}>
             <TextField
               required
               fullWidth
@@ -143,29 +146,8 @@ const RegisterPage = () => {
               onChange={handleInputsChange}
             />
           </Grid>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              name="url"
-              label="Url"
-              id="url"
-              autoComplete="new-url"
-              value={inputsValue.url}
-              onChange={handleInputsChange}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              name="alt"
-              label="Alt"
-              id="alt"
-              autoComplete="new-alt"
-              value={inputsValue.alt}
-              onChange={handleInputsChange}
-            />
-          </Grid>
-          <Grid item xs={12}>
+
+          <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
               name="state"
@@ -176,7 +158,7 @@ const RegisterPage = () => {
               onChange={handleInputsChange}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} sm={6}>
             <TextField
               required
               fullWidth
@@ -188,7 +170,7 @@ const RegisterPage = () => {
               onChange={handleInputsChange}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} sm={6}>
             <TextField
               required
               fullWidth
@@ -200,7 +182,7 @@ const RegisterPage = () => {
               onChange={handleInputsChange}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} sm={6}>
             <TextField
               required
               fullWidth
@@ -212,7 +194,7 @@ const RegisterPage = () => {
               onChange={handleInputsChange}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} sm={6}>
             <TextField
               required
               fullWidth
@@ -224,7 +206,30 @@ const RegisterPage = () => {
               onChange={handleInputsChange}
             />
           </Grid>
-          <Grid item xs={12}>
+
+          <Grid item xs={12} sm={6}>
+            <TextField
+              fullWidth
+              name="url"
+              label="Url"
+              id="url"
+              autoComplete="new-url"
+              value={inputsValue.url}
+              onChange={handleInputsChange}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              fullWidth
+              name="alt"
+              label="Alt"
+              id="alt"
+              autoComplete="new-alt"
+              value={inputsValue.alt}
+              onChange={handleInputsChange}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
               name="zip"
@@ -235,7 +240,7 @@ const RegisterPage = () => {
               onChange={handleInputsChange}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} sm={6}>
             <FormControlLabel
               control={<Checkbox value="allowExtraEmails" color="primary" />}
               label="Business Account"
@@ -252,9 +257,9 @@ const RegisterPage = () => {
         </Button>
         <Grid container justifyContent="flex-end">
           <Grid item>
-            <Link href="#" variant="body2">
+            <NavLink to={ROUTES.LOGIN} variant="body2">
               Already have an account? Sign in
-            </Link>
+            </NavLink>
           </Grid>
         </Grid>
       </Box>
