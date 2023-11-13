@@ -5,6 +5,6 @@ const ROUTES = {
   LOGIN: "/login",
   EDITCARD: "/editcard",
   CREATECARD: "/createcard",
-  SANDBOX: "/sandbox",
+  PROFILE: "/profile",
 };
 export default ROUTES;

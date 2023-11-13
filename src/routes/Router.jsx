@@ -5,10 +5,10 @@ import RegisterPage from "../pages/register/RegisterPage";
 import Error404Page from "../pages/404/Error404Page";
 import LoginPage from "../pages/login/LoginPage";
 import EditCardPage from "../pages/EditCardPage/EditCardPage";
-import SandboxPage from "../pages/Sandbox/SandboxPage";
 import CreateCardPage from "../pages/CreateCardPage/CreateCardPage";
 import AuthGuard from "../Guard/AuthGuard";
 import BizGuard from "../Guard/BizGuard";
+import ProfilePage from "../pages/profile/ProfilePage";
 
 const Router = () => {
   return (
@@ -27,7 +27,7 @@ const Router = () => {
         }
       />
       <Route path={`${ROUTES.EDITCARD}/:id`} element={<EditCardPage />} />
-      <Route path={ROUTES.SANDBOX} element={<SandboxPage />}></Route>
+      <Route path={ROUTES.PROFILE} element={<ProfilePage />}></Route>
       <Route path="*" element={<Error404Page />} />
     </Routes>
   );

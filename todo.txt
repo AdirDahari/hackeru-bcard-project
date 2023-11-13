@@ -8,3 +8,11 @@ Popup card details
 Props types
 All Admin shit
 Style
+
+
+today: Profile, favorite and fix likes
+
+
+
+profile: details on user, my cards, !Guard route!.
+favorite: on home page filter only likes cards
