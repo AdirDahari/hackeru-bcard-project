@@ -65,36 +65,7 @@ const ProfilePage = () => {
     (async () => {
       try {
         let { data } = await axios.get("/cards/my-cards");
-        setMyCard([
-          {
-            _id: "654250f4a8d1eae12d31e398",
-            title: "a wonderful new card",
-            subtitle: "a test value for this card",
-            description: "a test value for new card\na test value for new card",
-            phone: "012-3211234",
-            email: "qwe@gmail.com",
-            web: "www.bing.com",
-            image: {
-              url: "https://img.izismile.com/img/img13/20201030/640/you_have_never_seen_something_like_this_640_36.jpg",
-              alt: "image of something",
-              _id: "654250f4a8d1eae12d31e399",
-            },
-            address: {
-              state: "IL",
-              country: "israel",
-              city: "arad",
-              street: "shoham",
-              houseNumber: 5,
-              zip: 8920435,
-              _id: "654250f4a8d1eae12d31e39a",
-            },
-            bizNumber: 2285765,
-            likes: [],
-            user_id: "65424ae9a8d1eae12d31e360",
-            createdAt: "2023-11-01T13:21:56.114Z",
-            __v: 0,
-          },
-        ]);
+        setMyCard(data);
         console.log("myCard", myCard);
       } catch (err) {
         console.log("err", err);
@@ -103,7 +74,8 @@ const ProfilePage = () => {
   }, []);
 
   const handleEditCardClick = (_id) => {
-    navigate(`${ROUTES.CREATECARD}/${_id}`);
+    console.log(myCard);
+    navigate(`${ROUTES.EDITCARD}/${_id}`);
   };
   const handleCreateCardClick = () => {
     navigate(ROUTES.CREATECARD);
@@ -116,7 +88,7 @@ const ProfilePage = () => {
       };
       console.log(request);
       await axios.delete("/cards/" + _id, request);
-      setUserDataFromServer((dataFromServerCopy) =>
+      setMyCard((dataFromServerCopy) =>
         dataFromServerCopy.filter((card) => card._id !== _id)
       );
     } catch (err) {

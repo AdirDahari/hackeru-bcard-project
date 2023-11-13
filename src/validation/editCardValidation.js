@@ -14,7 +14,7 @@ const editCardSchema = Joi.object({
         .email({ tlds: { allow: false } })
         .min(5)
         .required(),
-    web: Joi.string().min(14).allow(),
+    web: Joi.string().min(14).allow(""),
     url: Joi.string().min(14).allow(""),
     alt: Joi.string().min(2).max(256).allow(""),
     state: Joi.string().allow(""),

@@ -4,7 +4,7 @@ const editCardNormalization = (inputs) => {
         subtitle: inputs.subtitle,
         description: inputs.description,
         phone: inputs.phone,
-        email: inputs.mail,
+        email: inputs.email,
         web: inputs.web,
         image: {
             url: inputs.url,

@@ -19,7 +19,6 @@ const CreateCardPage = () => {
     title: "",
     subtitle: "",
     phone: "",
-    add: "",
     email: "",
     description: "",
     web: "",
@@ -43,7 +42,7 @@ const CreateCardPage = () => {
   const handleCreateCardClick = async () => {
     try {
       const errors = validateCreateCard(inputsValue);
-      console.log(errors);
+      console.log("errors", errors);
       if (errors) return;
       let requestInputs = createCardNormalization(inputsValue);
       const { data } = await axios.post("/cards", requestInputs);
@@ -59,8 +58,7 @@ const CreateCardPage = () => {
       title: "",
       subtitle: "",
       phone: "",
-      add: "",
-      mail: "",
+      email: "",
       description: "",
       web: "",
       url: "",

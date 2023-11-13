@@ -27,7 +27,14 @@ const Router = () => {
         }
       />
       <Route path={`${ROUTES.EDITCARD}/:id`} element={<EditCardPage />} />
-      <Route path={ROUTES.PROFILE} element={<ProfilePage />}></Route>
+      <Route
+        path={ROUTES.PROFILE}
+        element={
+          <AuthGuard>
+            <ProfilePage />
+          </AuthGuard>
+        }
+      ></Route>
       <Route path="*" element={<Error404Page />} />
     </Routes>
   );

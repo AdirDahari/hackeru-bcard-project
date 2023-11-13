@@ -14,5 +14,5 @@ today: Profile, favorite and fix likes
 
 
 
-profile: details on user, my cards, !Guard route!.
+profile: popup details (show more)
 favorite: on home page filter only likes cards

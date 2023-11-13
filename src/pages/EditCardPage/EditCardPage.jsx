@@ -18,8 +18,7 @@ const EditCardPage = () => {
     title: "",
     subtitle: "",
     phone: "",
-    add: "",
-    mail: "",
+    email: "",
     description: "",
     web: "",
     url: "",
@@ -59,8 +58,7 @@ const EditCardPage = () => {
       title: "",
       subtitle: "",
       phone: "",
-      add: "",
-      mail: "",
+      email: "",
       description: "",
       web: "",
       url: "",
@@ -140,7 +138,7 @@ const EditCardPage = () => {
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
-            id="mail"
+            id="email"
             label="Email"
             variant="outlined"
             fullWidth
