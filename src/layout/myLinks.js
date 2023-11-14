@@ -1,20 +1,22 @@
 import ROUTES from "../routes/ROUTES";
 
-const myLinks = [
-  { to: ROUTES.HOME, children: "Home" },
-  { to: ROUTES.REGISTER, children: "Register" },
-  { to: ROUTES.LOGIN, children: "Login" },
-];
+// const myLinks = [
+//   { to: ROUTES.HOME, children: "Home" },
+//   { to: ROUTES.REGISTER, children: "Register" },
+//   { to: ROUTES.LOGIN, children: "Login" },
+// ];
 
-const alwaysLinks = [{ to: ROUTES.HOME, children: "Home" }, { to: ROUTES.ABOUT, children: "About" }];
-const loggedInLinks = [
+const mainLogoutLinks = [{ to: ROUTES.HOME, children: "Home" }, { to: ROUTES.ABOUT, children: "About" }];
+const mainLoginLinks = [{ to: ROUTES.FAVOURITE, children: "Favourite" }];
+
+const iconsLoginLinks = [
   { to: "/profile", children: "Profile" },
   { to: ROUTES.CREATECARD, children: "Create Card" },
 ];
-const loggedOutLinks = [
+const iconslogoutLinks = [
   { to: ROUTES.LOGIN, children: "Login" },
   { to: ROUTES.REGISTER, children: "Register" },
 ];
 
-export default myLinks;
-export { alwaysLinks, loggedInLinks, loggedOutLinks };
+// export default myLinks;
+export { mainLogoutLinks, mainLoginLinks, iconsLoginLinks, iconslogoutLinks };

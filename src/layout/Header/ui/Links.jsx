@@ -1,22 +1,18 @@
 import { Box, Typography } from "@mui/material";
 import nextKey from "generate-my-key";
-import myLinks, {
-  alwaysLinks,
-  loggedInLinks,
-  loggedOutLinks,
-} from "../../myLinks";
-import NavLinkComponent from "../NavLinkComponent";
+import { mainLogoutLinks, mainLoginLinks } from "../../myLinks";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { Fragment } from "react";
 
 const Links = () => {
   const loggedIn = useSelector((bigPie) => bigPie.authSlice.loggedIn);
   return (
-    <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-      {alwaysLinks.map((myItem) => (
+    <Fragment>
+      {mainLogoutLinks.map((myLink) => (
         <NavLink
-          key={myItem.children}
-          to={myItem.to}
+          key={nextKey()}
+          to={myLink.to}
           style={{ textDecoration: "none" }}
         >
           {({ isActive }) => (
@@ -25,24 +21,30 @@ const Links = () => {
               sx={{ p: 2 }}
               variant={"h6"}
             >
-              {myItem.children}
+              {myLink.children}
             </Typography>
           )}
         </NavLink>
       ))}
-      {/* {loggedIn &&
-        loggedInLinks.map((myItem) => (
-          <NavLinkComponent to={myItem.to} key={nextKey()}>
-            {myItem.children}
-          </NavLinkComponent>
+      {loggedIn &&
+        mainLoginLinks.map((myLink) => (
+          <NavLink
+            key={nextKey()}
+            to={myLink.to}
+            style={{ textDecoration: "none" }}
+          >
+            {({ isActive }) => (
+              <Typography
+                color={isActive ? "text.headerActive" : "text.headerColor"}
+                sx={{ p: 2 }}
+                variant={"h6"}
+              >
+                {myLink.children}
+              </Typography>
+            )}
+          </NavLink>
         ))}
-      {!loggedIn &&
-        loggedOutLinks.map((myItem) => (
-          <NavLinkComponent to={myItem.to} key={nextKey()}>
-            {myItem.children}
-          </NavLinkComponent>
-        ))} */}
-    </Box>
+    </Fragment>
   );
 };
 

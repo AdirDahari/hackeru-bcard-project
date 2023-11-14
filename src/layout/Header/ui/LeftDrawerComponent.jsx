@@ -1,7 +1,6 @@
 import { Box, List, Drawer } from "@mui/material";
-import { alwaysLinks, loggedInLinks, loggedOutLinks } from "../../myLinks";
-import NavLinkComponent from "../NavLinkComponent";
 import { useSelector } from "react-redux";
+import Links from "./Links";
 
 const LeftDrawerComponent = ({ isOpen, onCloseDrawer }) => {
   const loggedIn = useSelector((bigPie) => bigPie.authSlice.loggedIn);
@@ -14,23 +13,14 @@ const LeftDrawerComponent = ({ isOpen, onCloseDrawer }) => {
       onKeyDown={onCloseDrawer}
     >
       <List>
-        {alwaysLinks.map((myLink) => (
-          <NavLinkComponent key={myLink.children} to={myLink.to}>
-            {myLink.children}
-          </NavLinkComponent>
-        ))}
-        {/* {loggedIn &&
-          loggedInLinks.map((myLink) => (
-            <NavLinkComponent key={myLink.children} to={myLink.to}>
-              {myLink.children}
-            </NavLinkComponent>
-          ))}
-        {!loggedIn &&
-          loggedOutLinks.map((myLink) => (
-            <NavLinkComponent key={myLink.children} to={myLink.to}>
-              {myLink.children}
-            </NavLinkComponent>
-          ))} */}
+        <Box
+          sx={{
+            flexGrow: 1,
+            flexDirection: "column",
+          }}
+        >
+          <Links />
+        </Box>
       </List>
     </Box>
   );

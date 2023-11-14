@@ -4,7 +4,7 @@ import CreditCardIcon from "@mui/icons-material/CreditCard";
 import LoginIcon from "@mui/icons-material/Login";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { loggedInLinks, loggedOutLinks } from "../../myLinks";
+import { iconsLoginLinks, iconslogoutLinks } from "../../myLinks";
 import { useSelector } from "react-redux";
 import { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
@@ -32,7 +32,7 @@ const NavIconLinks = ({ isMoblie }) => {
     return (
       <Fragment>
         {loggedIn &&
-          loggedInLinks.map((myLink, index) => (
+          iconsLoginLinks.map((myLink, index) => (
             <MenuItem to={myLink.to} key={index} onClick={handleMenuItemClick}>
               {index === 0 ? <AccountCircle /> : <CreditCardIcon />}
               <Typography>&nbsp; {myLink.children}</Typography>
@@ -45,7 +45,7 @@ const NavIconLinks = ({ isMoblie }) => {
           </MenuItem>
         )}
         {!loggedIn &&
-          loggedOutLinks.map((myLink, index) => (
+          iconslogoutLinks.map((myLink, index) => (
             <MenuItem to={myLink.to} key={index} onClick={handleMenuItemClick}>
               {index === 0 ? <LoginIcon /> : <AppRegistrationIcon />}
               <Typography>&nbsp; {myLink.children}</Typography>
@@ -57,7 +57,7 @@ const NavIconLinks = ({ isMoblie }) => {
     return (
       <Fragment>
         {loggedIn &&
-          loggedInLinks.map((myLink, index) => (
+          iconsLoginLinks.map((myLink, index) => (
             <MenuItem
               onClick={handleMenuItemClick}
               key={index}
@@ -78,7 +78,7 @@ const NavIconLinks = ({ isMoblie }) => {
           </MenuItem>
         )}
         {!loggedIn &&
-          loggedOutLinks.map((myLink, index) => (
+          iconslogoutLinks.map((myLink, index) => (
             <MenuItem
               onClick={handleMenuItemClick}
               key={index}

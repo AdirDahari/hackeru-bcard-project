@@ -1,4 +1,3 @@
-import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -8,7 +7,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import MoreIcon from "@mui/icons-material/MoreVert";
-import { Switch } from "@mui/material";
+import { Switch, Fragment } from "@mui/material";
 import Links from "./ui/Links";
 import LeftDrawerComponent from "./ui/LeftDrawerComponent";
 import { useState } from "react";
@@ -113,7 +112,15 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
           >
             Bcard
           </Typography>
-          <Links />
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+            }}
+          >
+            <Links />
+          </Box>
+
           <FilterComponent />
           <Box
             sx={{
@@ -127,20 +134,6 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
             <Switch checked={isDarkTheme} onChange={handleThemeChange} />
           </Box>
           <Box sx={{ flexGrow: 1 }} />
-          {/* <MenuItem sx={{ display: { xs: "none", md: "flex" } }}>
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
-            <Typography>&nbsp; Profile</Typography>
-          </MenuItem> */}
           <NavIconLinks isMoblie={false} />
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
