@@ -24,6 +24,7 @@ import { validateLogin } from "../../validation/loginValidation";
 import { Alert } from "@mui/material";
 import useAutoLogin from "../../hooks/useAutoLogin";
 import { storeToken } from "../../service/storageService";
+import { successToast } from "../../messages/myToasts";
 
 const LoginPage = () => {
   /* top lvl for hooks */
@@ -54,16 +55,7 @@ const LoginPage = () => {
         password: passwordValue,
       });
       storeToken(data, rememberMe);
-      toast("You logged in successfully 👌", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      successToast("You logged in successfully");
       autoLogin(true); //skip token test
       navigate(ROUTES.HOME);
     } catch (err) {

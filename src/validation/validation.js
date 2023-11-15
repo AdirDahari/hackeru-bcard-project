@@ -4,14 +4,16 @@ const validation = (schema, userInput) => {
     //no errors
     return null;
   }
+  let myMessage = "";
   let errorObj = {};
   const { details } = error;
   for (let item of details) {
     let key = item.path[item.path.length - 1];
     let { message } = item;
+    if (!myMessage) myMessage = message;
     errorObj[key] = message;
   }
-  return errorObj;
+  return [errorObj, myMessage];
 };
 export default validation;
 

@@ -3,6 +3,7 @@ import axios from "axios";
 import { Fragment, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import FavouriteCardComponent from "../../components/FavouriteCardComponent";
+import { errorToast, infoToast } from "../../messages/myToasts";
 
 const FavouritePage = () => {
   const [dataFromServer, setdataFromServer] = useState([]);
@@ -12,12 +13,9 @@ const FavouritePage = () => {
     (async () => {
       try {
         let { data } = await axios.get("/cards");
-        // console.log(userData);
-        //65464ecea8d1eae12d31ee65
         setdataFromServer(likesCard(data, userData._id));
-        // console.log("data", data);
       } catch (err) {
-        console.log("err", err);
+        errorToast("Something wrong...");
       }
     })();
   }, [dataFromServer]);
@@ -37,11 +35,11 @@ const FavouritePage = () => {
     console.log("handleDislikeClick", handleDislikeClick);
     let card = dataFromServer.filter((card) => card._id === _id);
     try {
-      let request = await axios.patch("/cards/" + _id, card);
+      await axios.patch("/cards/" + _id, card);
       setdataFromServer(likesCard(dataFromServer, userData._id));
-      console.log("request", request);
+      infoToast("Card remove from your favourite!");
     } catch (err) {
-      console.log("handleDislikeClick err", err);
+      errorToast("Something wrong...");
     }
   };
 

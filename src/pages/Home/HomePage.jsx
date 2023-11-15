@@ -7,6 +7,7 @@ import axios from "axios";
 import { homePageNormalization } from "./homePageNormalization";
 import useQueryParams from "../../hooks/useQueryParams";
 import { useSelector } from "react-redux";
+import { errorToast, infoToast, successToast } from "../../messages/myToasts";
 
 let initialDataFromServer = [];
 
@@ -26,7 +27,7 @@ const HomePage = () => {
         setDataFromServer(data);
       })
       .catch((err) => {
-        console.log("err", err);
+        errorToast("Something worng...");
       });
   }, []);
 
@@ -50,18 +51,17 @@ const HomePage = () => {
   // }, [userData]);
 
   const handleDeleteCard = async (_id, bizNumber) => {
-    console.log("_id to delete (HomePage)", _id);
     try {
       let request = {
         bizNumber: +bizNumber,
       };
-      console.log(request);
       await axios.delete("/cards/" + _id, request);
       setDataFromServer((dataFromServerCopy) =>
         dataFromServerCopy.filter((card) => card._id !== _id)
       );
+      infoToast("Card Delete successfully!");
     } catch (err) {
-      console.log("handleDeleteCard err", err);
+      errorToast("Something wrong...");
     }
   };
   const handleEditCard = (_id) => {
@@ -70,8 +70,7 @@ const HomePage = () => {
   const handleLikeCard = async (_id) => {
     let card = dataFromServer.filter((card) => card._id === _id);
     try {
-      let request = await axios.patch("/cards/" + _id, card);
-      console.log("request", request);
+      await axios.patch("/cards/" + _id, card);
       setDataFromServer((currentData) => {
         currentData.map((data) => {
           if (data._id === _id) {
@@ -82,7 +81,7 @@ const HomePage = () => {
         return [...currentData];
       });
     } catch (err) {
-      console.log("like err", err);
+      errorToast("Something wrong...");
     }
   };
 

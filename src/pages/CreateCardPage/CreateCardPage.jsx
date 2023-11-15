@@ -13,6 +13,12 @@ import createCardNormalization from "./createCardNormalization";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/ROUTES";
 import { validateCreateCard } from "../../validation/createCardValidation";
+import {
+  errorToast,
+  infoToast,
+  successToast,
+  warningToast,
+} from "../../messages/myToasts";
 
 const CreateCardPage = () => {
   const [inputsValue, setInputValue] = useState({
@@ -42,14 +48,16 @@ const CreateCardPage = () => {
   const handleCreateCardClick = async () => {
     try {
       const errors = validateCreateCard(inputsValue);
-      console.log("errors", errors);
-      if (errors) return;
+      if (errors) {
+        warningToast(errors[1]);
+        return;
+      }
       let requestInputs = createCardNormalization(inputsValue);
-      const { data } = await axios.post("/cards", requestInputs);
-      console.log("data from response", data);
+      await axios.post("/cards", requestInputs);
       navigate(ROUTES.HOME);
+      successToast("Card Created successfully!");
     } catch (err) {
-      console.log("err", err.response);
+      errorToast("Something wrong...");
     }
   };
 

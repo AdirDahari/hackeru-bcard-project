@@ -1,19 +1,18 @@
 Errors Messages
 About page
-Profile page
-Fav page
-Fix likes
 Phone icon
 Fix nav warning
 Popup card details
 Props types
 All Admin shit
 Style
+Profile page - finish
+Fav page - finish
+Fix likes - finish
 
 
-today: Profile, favourite and fix likes
+*
+To all cards!: popup details (show more)
+*
 
-
-
-profile: popup details (show more)
-favourite: on home page filter only likes cards
+add messages from login

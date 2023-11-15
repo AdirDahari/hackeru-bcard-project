@@ -1,7 +1,14 @@
-import { Box, Button, Container, Typography } from "@mui/material";
+import { Box, Button, Container, CssBaseline, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
+import { useNavigate } from "react-router-dom";
+import ROUTES from "../../routes/ROUTES";
 //created by Anna
 const Error404Page = () => {
+  const navigate = useNavigate();
+  const handleBackHomeClick = () => {
+    navigate(ROUTES.HOME);
+  };
+
   return (
     <Box
       sx={{
@@ -18,7 +25,9 @@ const Error404Page = () => {
             <Typography variant="h6">
               The page you’re looking for doesn’t exist.
             </Typography>
-            <Button variant="contained">Back Home</Button>
+            <Button variant="contained" onClick={handleBackHomeClick}>
+              Back Home
+            </Button>
           </Grid>
           <Grid xs={6}>
             <img

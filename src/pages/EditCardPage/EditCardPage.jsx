@@ -12,6 +12,11 @@ import ROUTES from "../../routes/ROUTES";
 import axios from "axios";
 import editCardNormalization from "./editCardNormalization";
 import { validateEditCard } from "../../validation/editCardValidation";
+import {
+  errorToast,
+  successToast,
+  warningToast,
+} from "../../messages/myToasts";
 
 const EditCardPage = () => {
   const [inputsValue, setInputValue] = useState({
@@ -42,14 +47,16 @@ const EditCardPage = () => {
   const handleUpdateChangesClick = async () => {
     try {
       const errors = validateEditCard(inputsValue);
-      console.log(errors);
-      if (errors) return;
+      if (errors) {
+        warningToast(errors[1]);
+        return;
+      }
       let request = editCardNormalization(inputsValue);
-      const { data } = await axios.put("/cards/" + _id, request);
-      console.log("data from response", data);
+      await axios.put("/cards/" + _id, request);
       navigate(ROUTES.HOME);
+      successToast("Card Update successfully!");
     } catch (err) {
-      console.log("err", err.response);
+      errorToast("Something wrong...");
     }
   };
 
