@@ -9,6 +9,7 @@ import CreateCardPage from "../pages/CreateCardPage/CreateCardPage";
 import AuthGuard from "../Guard/AuthGuard";
 import BizGuard from "../Guard/BizGuard";
 import ProfilePage from "../pages/profile/ProfilePage";
+import FavouritePage from "../pages/favourite/FavouritePage";
 
 const Router = () => {
   return (
@@ -32,6 +33,14 @@ const Router = () => {
         element={
           <AuthGuard>
             <ProfilePage />
+          </AuthGuard>
+        }
+      ></Route>
+      <Route
+        path={ROUTES.FAVOURITE}
+        element={
+          <AuthGuard>
+            <FavouritePage />
           </AuthGuard>
         }
       ></Route>

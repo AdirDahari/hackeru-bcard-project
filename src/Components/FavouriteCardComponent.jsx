@@ -8,10 +8,10 @@ import {
   Divider,
   Typography,
 } from "@mui/material";
-import CardIconsComponent from "./CardIconsComponent";
 import MyCardIconsComponent from "./MyCardIconsComponent";
+import FavouriteCardIcons from "./FavouriteCardIcons";
 
-const MyCardComponent = ({
+const FavouriteCardComponent = ({
   _id,
   title,
   subTitle,
@@ -20,15 +20,14 @@ const MyCardComponent = ({
   img,
   alt,
   bizNumber,
-  onEditClick,
-  onDeleteClick,
 }) => {
-  const handleEditCard = () => {
-    onEditClick(_id);
+  const handleDislikeClick = () => {
+    console.log("handleDislikeClick");
   };
-  const handleDeleteCard = () => {
-    onDeleteClick(_id, bizNumber);
+  const handlePhoneClick = () => {
+    console.log("handlePhoneClick");
   };
+
   return (
     <Card>
       <CardActionArea>
@@ -57,12 +56,12 @@ const MyCardComponent = ({
             {bizNumber}
           </Typography>
         </Box>
-        <MyCardIconsComponent
-          handleClickEditCard={handleEditCard}
-          handleDeleteCardClick={handleDeleteCard}
+        <FavouriteCardIcons
+          handleDislike={handleDislikeClick}
+          handlePhone={handlePhoneClick}
         />
       </CardContent>
     </Card>
   );
 };
-export default MyCardComponent;
+export default FavouriteCardComponent;

@@ -87,7 +87,6 @@ const HomePage = () => {
       <Grid container spacing={2}>
         {dataFromServer.map((card, index) => (
           <Grid item key={card._id} xs={12} sm={6} md={4} lg={3}>
-            {/* {index < 12 ? ( */}
             <CardComponent
               title={card.title}
               subTitle={card.subtitle}
@@ -104,9 +103,6 @@ const HomePage = () => {
               onEditCard={handleEditCard}
               onLikeCard={handleLikeCard}
             />
-            {/* ) : (
-              <Fragment></Fragment>
-            )} */}
           </Grid>
         ))}
       </Grid>

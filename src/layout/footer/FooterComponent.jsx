@@ -1,12 +1,11 @@
 import { Fragment, useState } from "react";
 
-import { BottomNavigation, Divider } from "@mui/material";
+import { BottomNavigation, Box, Divider } from "@mui/material";
 import { useSelector } from "react-redux";
 import Links from "../header/ui/Links";
 
 const FooterComponent = () => {
   const [value, setValue] = useState(0);
-  const loggedIn = useSelector((bigPie) => bigPie.authSlice.loggedIn);
   return (
     <Fragment>
       <Divider></Divider>
@@ -18,14 +17,15 @@ const FooterComponent = () => {
           setValue(newValue);
         }}
       >
-        <Fragment
+        <Box
           sx={{
             flexGrow: 1,
             display: "flex",
+            justifyContent: "center",
           }}
         >
           <Links />
-        </Fragment>
+        </Box>
       </BottomNavigation>
     </Fragment>
   );

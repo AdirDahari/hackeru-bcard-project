@@ -3,6 +3,7 @@ About page
 Profile page
 Fav page
 Fix likes
+Phone icon
 Fix nav warning
 Popup card details
 Props types
@@ -10,9 +11,9 @@ All Admin shit
 Style
 
 
-today: Profile, favorite and fix likes
+today: Profile, favourite and fix likes
 
 
 
 profile: popup details (show more)
-favorite: on home page filter only likes cards
+favourite: on home page filter only likes cards

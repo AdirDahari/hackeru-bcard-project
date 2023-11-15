@@ -26,7 +26,6 @@ const CardComponent = ({
   img,
   alt,
   isLike,
-  cardNumber,
   bizNumber,
   user_id,
   onDeleteCard,
@@ -75,7 +74,7 @@ const CardComponent = ({
             <Typography fontWeight="700" variant="subtitle1" component="span">
               Card Number:{" "}
             </Typography>
-            {cardNumber}
+            {bizNumber}
           </Typography>
         </Box>
         {/* <Box display="flex" justifyContent="space-between">
