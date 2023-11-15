@@ -4,7 +4,7 @@ import CardComponent from "../../components/CardComponent";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/ROUTES";
 import axios from "axios";
-import homePageNormalization from "./homePageNormalization";
+import { homePageNormalization } from "./homePageNormalization";
 import useQueryParams from "../../hooks/useQueryParams";
 import { useSelector } from "react-redux";
 
@@ -67,16 +67,23 @@ const HomePage = () => {
   const handleEditCard = (_id) => {
     navigate(`${ROUTES.EDITCARD}/${_id}`);
   };
-  const handleLikeCard = (_id) => {
-    setDataFromServer((currentData) => {
-      currentData.map((data) => {
-        if (data._id === _id) {
-          data.likes = !data.likes;
-          return;
-        }
+  const handleLikeCard = async (_id) => {
+    let card = dataFromServer.filter((card) => card._id === _id);
+    try {
+      let request = await axios.patch("/cards/" + _id, card);
+      console.log("request", request);
+      setDataFromServer((currentData) => {
+        currentData.map((data) => {
+          if (data._id === _id) {
+            data.likes = !data.likes;
+            return [...currentData];
+          }
+        });
+        return [...currentData];
       });
-      return [...currentData];
-    });
+    } catch (err) {
+      console.log("like err", err);
+    }
   };
 
   return (

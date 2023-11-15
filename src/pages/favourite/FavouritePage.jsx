@@ -2,7 +2,6 @@ import { Container, Divider, Grid, Typography } from "@mui/material";
 import axios from "axios";
 import { Fragment, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import MyCardComponent from "../../components/MyCardComponent";
 import FavouriteCardComponent from "../../components/FavouriteCardComponent";
 
 const FavouritePage = () => {
@@ -13,15 +12,15 @@ const FavouritePage = () => {
     (async () => {
       try {
         let { data } = await axios.get("/cards");
-        console.log(userData);
+        // console.log(userData);
         //65464ecea8d1eae12d31ee65
-        setdataFromServer(likesCard(data, "65464ecea8d1eae12d31ee65"));
+        setdataFromServer(likesCard(data, userData._id));
         // console.log("data", data);
       } catch (err) {
         console.log("err", err);
       }
     })();
-  }, []);
+  }, [dataFromServer]);
 
   const likesCard = (cards, user_id) => {
     return cards.filter((card) => {
@@ -32,6 +31,22 @@ const FavouritePage = () => {
       }
       return false;
     });
+  };
+
+  const handleDislikeClick = async (_id) => {
+    console.log("handleDislikeClick", handleDislikeClick);
+    let card = dataFromServer.filter((card) => card._id === _id);
+    try {
+      let request = await axios.patch("/cards/" + _id, card);
+      setdataFromServer(likesCard(dataFromServer, userData._id));
+      console.log("request", request);
+    } catch (err) {
+      console.log("handleDislikeClick err", err);
+    }
+  };
+
+  const handlePhoneClick = (_id) => {
+    console.log("handlePhoneClick", handlePhoneClick);
   };
 
   return (
@@ -53,6 +68,8 @@ const FavouritePage = () => {
               bizNumber={card.bizNumber}
               img={card.image.url}
               alt={card.image.alt}
+              onDislikeCard={handleDislikeClick}
+              onPhoneCard={handlePhoneClick}
             />
           </Grid>
         ))}

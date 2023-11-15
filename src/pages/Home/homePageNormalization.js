@@ -9,4 +9,29 @@ const homePageNormalization = (dataFromServer, id) => {
     }
     return dataFromServer;
 };
-export default homePageNormalization;
+
+const likeNormalization = (likeCard) => {
+    console.log("likeNormalization", likeCard);
+    let response = {
+        title: likeCard.title,
+        subtitle: likeCard.subtitle,
+        description: likeCard.description,
+        phone: likeCard.phone,
+        email: likeCard.email,
+        web: likeCard.web,
+        image: {
+            url: likeCard.image.url,
+            alt: likeCard.image.alt
+        },
+        address: {
+            state: likeCard.address.state,
+            country: likeCard.address.country,
+            city: likeCard.address.city,
+            street: likeCard.address.street,
+            houseNumber: likeCard.address.houseNumber,
+            zip: likeCard.address.zip
+        }
+    }
+    return response;
+}
+export { homePageNormalization, likeNormalization };

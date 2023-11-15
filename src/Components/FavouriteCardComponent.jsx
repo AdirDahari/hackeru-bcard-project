@@ -8,7 +8,6 @@ import {
   Divider,
   Typography,
 } from "@mui/material";
-import MyCardIconsComponent from "./MyCardIconsComponent";
 import FavouriteCardIcons from "./FavouriteCardIcons";
 
 const FavouriteCardComponent = ({
@@ -20,12 +19,14 @@ const FavouriteCardComponent = ({
   img,
   alt,
   bizNumber,
+  onDislikeCard,
+  onPhoneCard,
 }) => {
   const handleDislikeClick = () => {
-    console.log("handleDislikeClick");
+    onDislikeCard(_id);
   };
   const handlePhoneClick = () => {
-    console.log("handlePhoneClick");
+    onPhoneCard(_id);
   };
 
   return (
