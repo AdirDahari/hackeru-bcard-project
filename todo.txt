@@ -16,3 +16,5 @@ To all cards!: popup details (show more)
 *
 
 add messages from login
+
+edit card page need to fix server error
