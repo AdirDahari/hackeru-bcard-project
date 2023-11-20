@@ -15,6 +15,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/ROUTES";
 import CardComponent from "../../components/CardComponent";
 import MyCardComponent from "../../components/MyCardComponent";
+import { errorToast, infoToast } from "../../messages/myToasts";
 
 const ProfilePage = () => {
   const [userDataFromServer, setUserDataFromServer] = useState({
@@ -56,7 +57,7 @@ const ProfilePage = () => {
         // console.log("userDataFromServer", data);
         setUserDataFromServer(data);
       } catch (err) {
-        console.log("err", err);
+        errorToast("Something worng...");
       }
     })();
   }, []);
@@ -68,13 +69,12 @@ const ProfilePage = () => {
         setMyCard(data);
         console.log("myCard", myCard);
       } catch (err) {
-        console.log("err", err);
+        errorToast("Something worng...");
       }
     })();
   }, []);
 
   const handleEditCardClick = (_id) => {
-    console.log(myCard);
     navigate(`${ROUTES.EDITCARD}/${_id}`);
   };
   const handleCreateCardClick = () => {
@@ -86,13 +86,13 @@ const ProfilePage = () => {
       let request = {
         bizNumber: +bizNumber,
       };
-      console.log(request);
       await axios.delete("/cards/" + _id, request);
       setMyCard((dataFromServerCopy) =>
         dataFromServerCopy.filter((card) => card._id !== _id)
       );
+      infoToast("Card deleted");
     } catch (err) {
-      console.log("handleDeleteCard err", err);
+      errorToast("Something wrong....");
     }
   };
 

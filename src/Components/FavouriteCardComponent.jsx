@@ -9,6 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import FavouriteCardIcons from "./FavouriteCardIcons";
+import PopupComponent from "./PopupComponent";
 
 const FavouriteCardComponent = ({
   _id,
@@ -18,6 +19,8 @@ const FavouriteCardComponent = ({
   address,
   img,
   alt,
+  description,
+  email,
   bizNumber,
   onDislikeCard,
   onPhoneCard,
@@ -31,9 +34,18 @@ const FavouriteCardComponent = ({
 
   return (
     <Card>
-      <CardActionArea>
+      {/* <CardActionArea>
         <CardMedia component="img" image={img} alt={alt} />
-      </CardActionArea>
+      </CardActionArea> */}
+      <PopupComponent
+        img={img}
+        alt={alt}
+        title={title}
+        email={email}
+        address={address}
+        description={description}
+        phone={phone}
+      />
       <CardContent>
         <CardHeader title={title} subheader={subTitle} sx={{ p: 0, mb: 1 }} />
         <Divider />

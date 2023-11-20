@@ -14,6 +14,7 @@ import { normalizeData } from "./normalizeData";
 import { validateRegister } from "../../validation/registerValidation";
 import { NavLink, useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/ROUTES";
+import { errorToast, warningToast } from "../../messages/myToasts";
 
 const RegisterPage = () => {
   const [inputsValue, setInputsValue] = useState({
@@ -45,13 +46,16 @@ const RegisterPage = () => {
       event.preventDefault();
       const errors = validateRegister(inputsValue);
       console.log(errors);
-      if (errors) return;
+      if (errors) {
+        warningToast(errors[1]);
+        return;
+      }
       let request = normalizeData(inputsValue);
       const { data } = await axios.post("/users", request);
       console.log("data", data);
       navigate(ROUTES.HOME);
     } catch (err) {
-      console.log(err);
+      errorToast("Something worng...");
     }
   };
 

@@ -1,5 +1,12 @@
 import { Fragment, useEffect, useState } from "react";
-import { Container, Divider, Grid, Typography } from "@mui/material";
+import {
+  Box,
+  Container,
+  Divider,
+  Grid,
+  Pagination,
+  Typography,
+} from "@mui/material";
 import CardComponent from "../../components/CardComponent";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/ROUTES";
@@ -13,6 +20,9 @@ let initialDataFromServer = [];
 
 const HomePage = () => {
   const [dataFromServer, setDataFromServer] = useState([]);
+  // const [dataToShow, setDataToShow] = useState([[]]);
+  const [pages, setPages] = useState(0);
+  const [page, setPage] = useState(1);
   const navigate = useNavigate();
   const userData = useSelector((bigPie) => bigPie.authSlice.userData);
   const loggedIn = useSelector((bigPie) => bigPie.authSlice.loggedIn);
@@ -25,6 +35,8 @@ const HomePage = () => {
         console.log("data", data);
         initialDataFromServer = data;
         setDataFromServer(data);
+        setPages(Math.ceil(data.length / 12));
+        // showData();
       })
       .catch((err) => {
         errorToast("Something worng...");
@@ -49,6 +61,20 @@ const HomePage = () => {
   //       : dispatch(darkThemeActions.lightTheme());
   //   }
   // }, [userData]);
+
+  // const showData = () => {
+  //   let tempArr = [];
+  //   let counter = 0;
+  //   for (let i = 0; i < pages; i++) {
+  //     let arr = [];
+  //     for (let j = 0; j < 12; j++) {
+  //       arr.push(dataFromServer[counter]);
+  //       counter++;
+  //     }
+  //     tempArr.push(arr);
+  //   }
+  //   setDataToShow(tempArr);
+  // };
 
   const handleDeleteCard = async (_id, bizNumber) => {
     try {
@@ -85,6 +111,11 @@ const HomePage = () => {
     }
   };
 
+  const handleChangePage = (e) => {
+    console.log("handleChangePage", e.target.innerText);
+    setPage(+e.target.innerText);
+  };
+
   return (
     <Container>
       <Typography variant="h1">Card Page</Typography>
@@ -93,25 +124,39 @@ const HomePage = () => {
       <Grid container spacing={2}>
         {dataFromServer.map((card, index) => (
           <Grid item key={card._id} xs={12} sm={6} md={4} lg={3}>
-            <CardComponent
-              title={card.title}
-              subTitle={card.subtitle}
-              phone={card.phone}
-              address={`${card.address.city}, ${card.address.street} ${card.address.houseNumber}`}
-              img={card.image.url}
-              alt={card.image.alt}
-              _id={card._id}
-              user_id={card.user_id}
-              bizNumber={card.bizNumber}
-              isLike={loggedIn ? card.likes : false}
-              cardNumber={card.cardNumber}
-              onDeleteCard={handleDeleteCard}
-              onEditCard={handleEditCard}
-              onLikeCard={handleLikeCard}
-            />
+            {index < 12 ? (
+              <CardComponent
+                title={card.title}
+                subTitle={card.subtitle}
+                phone={card.phone}
+                address={`${card.address.city}, ${card.address.street} ${card.address.houseNumber}`}
+                img={card.image.url}
+                alt={card.image.alt}
+                email={card.email}
+                _id={card._id}
+                user_id={card.user_id}
+                bizNumber={card.bizNumber}
+                isLike={loggedIn ? card.likes : false}
+                cardNumber={card.cardNumber}
+                description={card.description}
+                onDeleteCard={handleDeleteCard}
+                onEditCard={handleEditCard}
+                onLikeCard={handleLikeCard}
+              />
+            ) : (
+              <Fragment />
+            )}
           </Grid>
         ))}
       </Grid>
+      <Box p={2}>
+        <Pagination
+          count={pages}
+          page={page}
+          onChange={handleChangePage}
+          color="primary"
+        />
+      </Box>
     </Container>
   );
 };

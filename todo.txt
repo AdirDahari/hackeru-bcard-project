@@ -1,4 +1,4 @@
-Errors Messages
+Errors Messages - finish
 About page
 Phone icon
 Fix nav warning
@@ -15,6 +15,5 @@ Fix likes - finish
 To all cards!: popup details (show more)
 *
 
-add messages from login
-
-edit card page need to fix server error
+add map api to popup
+fix pages

@@ -7,6 +7,7 @@ import FooterComponent from "./footer/FooterComponent";
 import tmc from "twin-moon-color";
 import { useDispatch, useSelector } from "react-redux";
 import { darkThemeActions } from "../store/darkThemeSlice";
+import PopupComponent from "../components/PopupComponent";
 
 const LayoutComponent = ({ children }) => {
   // const [isDarkTheme, setIsDarkTheme] = useState(false);
@@ -55,7 +56,7 @@ const LayoutComponent = ({ children }) => {
         onThemeChange={handleThemeChange}
       />
       <MainComponent>{children}</MainComponent>
-      {/* <MainComponent><Homepage /></MainComponent> */}
+      <PopupComponent />
       <FooterComponent />
     </ThemeProvider>
   );

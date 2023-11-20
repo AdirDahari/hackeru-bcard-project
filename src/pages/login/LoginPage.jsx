@@ -24,7 +24,7 @@ import { validateLogin } from "../../validation/loginValidation";
 import { Alert } from "@mui/material";
 import useAutoLogin from "../../hooks/useAutoLogin";
 import { storeToken } from "../../service/storageService";
-import { successToast } from "../../messages/myToasts";
+import { successToast, warningToast } from "../../messages/myToasts";
 
 const LoginPage = () => {
   /* top lvl for hooks */
@@ -49,7 +49,10 @@ const LoginPage = () => {
         password: passwordValue,
       });
       setErrorsState(joiResponse);
-      if (joiResponse) return;
+      if (joiResponse) {
+        warningToast(joiResponse[1]);
+        return;
+      }
       let { data } = await axios.post("/users/login", {
         email: emailValue,
         password: passwordValue,
@@ -59,7 +62,8 @@ const LoginPage = () => {
       autoLogin(true); //skip token test
       navigate(ROUTES.HOME);
     } catch (err) {
-      console.log("err from login", err);
+      let { response } = err;
+      warningToast(response.data);
     }
   };
   const handleEmailInputChange = (e) => {

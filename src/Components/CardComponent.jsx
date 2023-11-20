@@ -16,6 +16,8 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import CardIconsComponent from "./CardIconsComponent";
+import { useState } from "react";
+import PopupComponent from "./PopupComponent";
 
 const CardComponent = ({
   _id,
@@ -25,6 +27,8 @@ const CardComponent = ({
   address,
   img,
   alt,
+  description,
+  email,
   isLike,
   bizNumber,
   user_id,
@@ -33,7 +37,7 @@ const CardComponent = ({
   onLikeCard,
 }) => {
   const loggedIn = useSelector((bigPie) => bigPie.authSlice.loggedIn);
-  // console.log("CardComponent");
+
   const handlePhoneClick = () => {
     console.log("you clicked on phone btn");
   };
@@ -51,9 +55,18 @@ const CardComponent = ({
   };
   return (
     <Card>
-      <CardActionArea>
+      {/* <CardActionArea>
         <CardMedia component="img" image={img} alt={alt} />
-      </CardActionArea>
+      </CardActionArea> */}
+      <PopupComponent
+        img={img}
+        alt={alt}
+        title={title}
+        email={email}
+        address={address}
+        description={description}
+        phone={phone}
+      />
       <CardContent>
         <CardHeader title={title} subheader={subTitle} sx={{ p: 0, mb: 1 }} />
         <Divider />

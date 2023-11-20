@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import CardIconsComponent from "./CardIconsComponent";
 import MyCardIconsComponent from "./MyCardIconsComponent";
+import PopupComponent from "./PopupComponent";
 
 const MyCardComponent = ({
   _id,
@@ -19,6 +20,8 @@ const MyCardComponent = ({
   address,
   img,
   alt,
+  description,
+  email,
   bizNumber,
   onEditClick,
   onDeleteClick,
@@ -31,9 +34,15 @@ const MyCardComponent = ({
   };
   return (
     <Card>
-      <CardActionArea>
-        <CardMedia component="img" image={img} alt={alt} />
-      </CardActionArea>
+      <PopupComponent
+        img={img}
+        alt={alt}
+        title={title}
+        email={email}
+        address={address}
+        description={description}
+        phone={phone}
+      />
       <CardContent>
         <CardHeader title={title} subheader={subTitle} sx={{ p: 0, mb: 1 }} />
         <Divider />
