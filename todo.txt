@@ -1,18 +1,18 @@
 Errors Messages - finish
-About page
+About page - finish
 Phone icon
 Fix nav warning
 Popup card details
-Props types
-All Admin shit
-Style
 Profile page - finish
 Fav page - finish
 Fix likes - finish
+Props types
+All Admin shit
+Style
+Clean code
 
 
-*
-To all cards!: popup details (show more)
-*
+phone - open details
+add map api to popup to all cards components
 
-add map api to popup
+today : phone, fix nav
