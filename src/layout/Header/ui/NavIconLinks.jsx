@@ -14,8 +14,12 @@ const NavIconLinks = ({ isMoblie }) => {
   const navigate = useNavigate();
 
   const handleMenuItemClick = (e) => {
-    if (e.target.parentElement.attributes[3].value) {
-      navigate(e.target.parentElement.attributes[3].value);
+    try {
+      if (e.target.parentElement.attributes[3].value) {
+        navigate(e.target.parentElement.attributes[3].value);
+      }
+    } catch (err) {
+      return;
     }
   };
 

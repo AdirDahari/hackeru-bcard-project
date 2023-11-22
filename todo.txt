@@ -16,4 +16,3 @@ To all cards!: popup details (show more)
 *
 
 add map api to popup
-fix pages

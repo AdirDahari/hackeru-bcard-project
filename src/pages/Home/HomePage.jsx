@@ -20,7 +20,6 @@ let initialDataFromServer = [];
 
 const HomePage = () => {
   const [dataFromServer, setDataFromServer] = useState([]);
-  // const [dataToShow, setDataToShow] = useState([[]]);
   const [pages, setPages] = useState(0);
   const [page, setPage] = useState(1);
   const navigate = useNavigate();
@@ -34,9 +33,7 @@ const HomePage = () => {
         if (userData) data = homePageNormalization(data, userData._id);
         console.log("data", data);
         initialDataFromServer = data;
-        setDataFromServer(data);
         setPages(Math.ceil(data.length / 12));
-        // showData();
       })
       .catch((err) => {
         errorToast("Something worng...");
@@ -46,35 +43,26 @@ const HomePage = () => {
   useEffect(() => {
     if (!initialDataFromServer.length) return;
     const filter = query.filter ? query.filter : "";
-    setDataFromServer(
-      initialDataFromServer.filter((card) => card.title.startsWith(filter))
-    );
-  }, [query, initialDataFromServer]);
+    if (filter) {
+      setDataFromServer(
+        initialDataFromServer.filter((card) => card.title.startsWith(filter))
+      );
+    } else {
+      cardsToShow();
+    }
+  }, [query, initialDataFromServer, page]);
 
-  // BUG!!!
-  // useEffect(() => {
-  //   if (!userData) return;
-  //   let userTheme = localStorage.getItem(userData._id);
-  //   if (userTheme) {
-  //     userTheme
-  //       ? dispatch(darkThemeActions.darkTheme())
-  //       : dispatch(darkThemeActions.lightTheme());
-  //   }
-  // }, [userData]);
-
-  // const showData = () => {
-  //   let tempArr = [];
-  //   let counter = 0;
-  //   for (let i = 0; i < pages; i++) {
-  //     let arr = [];
-  //     for (let j = 0; j < 12; j++) {
-  //       arr.push(dataFromServer[counter]);
-  //       counter++;
-  //     }
-  //     tempArr.push(arr);
-  //   }
-  //   setDataToShow(tempArr);
-  // };
+  const cardsToShow = () => {
+    let tempArr = [];
+    let max = page * 12;
+    if (max > initialDataFromServer.length) {
+      max = initialDataFromServer.length;
+    }
+    for (let i = max - 12; i < max; i++) {
+      tempArr.push(initialDataFromServer[i]);
+    }
+    setDataFromServer(tempArr);
+  };
 
   const handleDeleteCard = async (_id, bizNumber) => {
     try {
@@ -112,7 +100,6 @@ const HomePage = () => {
   };
 
   const handleChangePage = (e) => {
-    console.log("handleChangePage", e.target.innerText);
     setPage(+e.target.innerText);
   };
 
@@ -124,32 +111,28 @@ const HomePage = () => {
       <Grid container spacing={2}>
         {dataFromServer.map((card, index) => (
           <Grid item key={card._id} xs={12} sm={6} md={4} lg={3}>
-            {index < 12 ? (
-              <CardComponent
-                title={card.title}
-                subTitle={card.subtitle}
-                phone={card.phone}
-                address={`${card.address.city}, ${card.address.street} ${card.address.houseNumber}`}
-                img={card.image.url}
-                alt={card.image.alt}
-                email={card.email}
-                _id={card._id}
-                user_id={card.user_id}
-                bizNumber={card.bizNumber}
-                isLike={loggedIn ? card.likes : false}
-                cardNumber={card.cardNumber}
-                description={card.description}
-                onDeleteCard={handleDeleteCard}
-                onEditCard={handleEditCard}
-                onLikeCard={handleLikeCard}
-              />
-            ) : (
-              <Fragment />
-            )}
+            <CardComponent
+              title={card.title}
+              subTitle={card.subtitle}
+              phone={card.phone}
+              address={`${card.address.city}, ${card.address.street} ${card.address.houseNumber}`}
+              img={card.image.url}
+              alt={card.image.alt}
+              email={card.email}
+              _id={card._id}
+              user_id={card.user_id}
+              bizNumber={card.bizNumber}
+              isLike={loggedIn ? card.likes : false}
+              cardNumber={card.cardNumber}
+              description={card.description}
+              onDeleteCard={handleDeleteCard}
+              onEditCard={handleEditCard}
+              onLikeCard={handleLikeCard}
+            />
           </Grid>
         ))}
       </Grid>
-      <Box p={2}>
+      <Box sx={{ display: "flex", justifyContent: "center" }} p={3}>
         <Pagination
           count={pages}
           page={page}
