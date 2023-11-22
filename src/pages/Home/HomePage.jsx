@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Box,
   Container,
@@ -14,7 +14,7 @@ import axios from "axios";
 import { homePageNormalization } from "./homePageNormalization";
 import useQueryParams from "../../hooks/useQueryParams";
 import { useSelector } from "react-redux";
-import { errorToast, infoToast, successToast } from "../../messages/myToasts";
+import { errorToast, infoToast } from "../../messages/myToasts";
 
 let initialDataFromServer = [];
 
@@ -31,7 +31,7 @@ const HomePage = () => {
       .get("/cards")
       .then(({ data }) => {
         if (userData) data = homePageNormalization(data, userData._id);
-        console.log("data", data);
+        // console.log("data", data);
         initialDataFromServer = data;
         setPages(Math.ceil(data.length / 12));
       })
@@ -86,6 +86,7 @@ const HomePage = () => {
     try {
       await axios.patch("/cards/" + _id, card);
       setDataFromServer((currentData) => {
+        console.log("currentData", currentData);
         currentData.map((data) => {
           if (data._id === _id) {
             data.likes = !data.likes;
@@ -122,7 +123,7 @@ const HomePage = () => {
               _id={card._id}
               user_id={card.user_id}
               bizNumber={card.bizNumber}
-              isLike={loggedIn ? card.likes : false}
+              isLike={typeof card.likes === "boolean" ? card.likes : false}
               cardNumber={card.cardNumber}
               description={card.description}
               onDeleteCard={handleDeleteCard}

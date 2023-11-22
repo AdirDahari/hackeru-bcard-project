@@ -9,10 +9,6 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
-import PhoneIcon from "@mui/icons-material/Phone";
-import CreateIcon from "@mui/icons-material/Create";
-import DeleteIcon from "@mui/icons-material/Delete";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import CardIconsComponent from "./CardIconsComponent";
@@ -37,9 +33,19 @@ const CardComponent = ({
   onLikeCard,
 }) => {
   const loggedIn = useSelector((bigPie) => bigPie.authSlice.loggedIn);
+  const [openDetails, setOpenDetails] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpenDetails(true);
+  };
+
+  const handleClickClose = () => {
+    setOpenDetails(false);
+  };
 
   const handlePhoneClick = () => {
     console.log("you clicked on phone btn");
+    setOpenDetails(true);
   };
   const handleDeleteCardClick = () => {
     console.log("_id to delete (CardComponent)", _id);
@@ -66,6 +72,9 @@ const CardComponent = ({
         address={address}
         description={description}
         phone={phone}
+        open={openDetails}
+        onClickOpen={handleClickOpen}
+        onClickClose={handleClickClose}
       />
       <CardContent>
         <CardHeader title={title} subheader={subTitle} sx={{ p: 0, mb: 1 }} />
@@ -90,24 +99,6 @@ const CardComponent = ({
             {bizNumber}
           </Typography>
         </Box>
-        {/* <Box display="flex" justifyContent="space-between">
-          <Box>
-            <IconButton onClick={handlePhoneClick}>
-              <PhoneIcon />
-            </IconButton>
-            <IconButton onClick={handleClickEditCard}>
-              <CreateIcon />
-            </IconButton>
-          </Box>
-          <Box>
-            <IconButton onClick={handleDeleteCardClick}>
-              <DeleteIcon />
-            </IconButton>
-            <IconButton>
-              <FavoriteIcon color={like ? "favActive" : ""} />
-            </IconButton>
-          </Box>
-        </Box> */}
         <CardIconsComponent
           handleClickEditCard={handleClickEditCard}
           handlePhoneClick={handlePhoneClick}

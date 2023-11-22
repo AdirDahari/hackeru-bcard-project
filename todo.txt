@@ -1,11 +1,10 @@
 Errors Messages - finish
 About page - finish
 Phone icon
-Fix nav warning
 Popup card details
 Profile page - finish
 Fav page - finish
-Fix likes - finish
+Fix likes - *bug*
 Props types
 All Admin shit
 Style
@@ -15,4 +14,4 @@ Clean code
 phone - open details
 add map api to popup to all cards components
 
-today : phone, fix nav
+today : phone

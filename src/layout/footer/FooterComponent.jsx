@@ -1,7 +1,5 @@
 import { Fragment, useState } from "react";
-
 import { BottomNavigation, Box, Divider } from "@mui/material";
-import { useSelector } from "react-redux";
 import Links from "../header/ui/Links";
 
 const FooterComponent = () => {
@@ -10,9 +8,8 @@ const FooterComponent = () => {
     <Fragment>
       <Divider></Divider>
       <BottomNavigation
-        sx={{}}
-        showLabels
         value={value}
+        showLabels
         onChange={(event, newValue) => {
           setValue(newValue);
         }}
