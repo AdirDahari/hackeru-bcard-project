@@ -1,6 +1,6 @@
 Errors Messages - finish
 About page - finish
-Phone icon
+Phone icon - finish
 Popup card details
 Profile page - finish
 Fav page - finish
@@ -10,8 +10,5 @@ All Admin shit
 Style
 Clean code
 
-
-phone - open details
 add map api to popup to all cards components
 
-today : phone
