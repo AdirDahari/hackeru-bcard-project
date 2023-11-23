@@ -61,9 +61,14 @@ const CardComponent = ({
   };
   return (
     <Card>
-      {/* <CardActionArea>
-        <CardMedia component="img" image={img} alt={alt} />
-      </CardActionArea> */}
+      <CardActionArea onClick={handleClickOpen}>
+        <CardMedia
+          sx={{ maxHeight: 240, minHeight: 240 }}
+          component="img"
+          image={img}
+          alt={alt}
+        />
+      </CardActionArea>
       <PopupComponent
         img={img}
         alt={alt}
@@ -73,7 +78,6 @@ const CardComponent = ({
         description={description}
         phone={phone}
         open={openDetails}
-        onClickOpen={handleClickOpen}
         onClickClose={handleClickClose}
       />
       <CardContent>

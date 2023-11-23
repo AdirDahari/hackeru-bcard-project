@@ -27,25 +27,11 @@ const PopupComponent = ({
   phone,
   address,
   email,
-  open,
-  onClickOpen,
+  open = false,
   onClickClose,
 }) => {
-  // const [open, setOpen] = useState(false);
-
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
-
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
-
   return (
     <Fragment>
-      <CardActionArea onClick={onClickOpen}>
-        <CardMedia component="img" image={img} alt={alt} />
-      </CardActionArea>
       <Dialog
         open={open}
         TransitionComponent={Transition}

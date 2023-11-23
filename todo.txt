@@ -1,12 +1,7 @@
-Errors Messages - finish
-About page - finish
-Phone icon - finish
+Fix likes - finish (bug)
 Popup card details
-Profile page - finish
-Fav page - finish
-Fix likes - finish
-Props types
 All Admin shit Sandbox
+Props types
 Style
 Clean code
 
