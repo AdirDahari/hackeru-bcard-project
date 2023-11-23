@@ -4,7 +4,7 @@ Phone icon - finish
 Popup card details
 Profile page - finish
 Fav page - finish
-Fix likes - *bug*
+Fix likes - finish
 Props types
 All Admin shit Sandbox
 Style
