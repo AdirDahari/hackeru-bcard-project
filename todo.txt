@@ -6,7 +6,7 @@ Profile page - finish
 Fav page - finish
 Fix likes - *bug*
 Props types
-All Admin shit
+All Admin shit Sandbox
 Style
 Clean code
 

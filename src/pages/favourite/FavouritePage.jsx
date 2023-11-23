@@ -43,9 +43,9 @@ const FavouritePage = () => {
     }
   };
 
-  const handlePhoneClick = (_id) => {
-    console.log("handlePhoneClick", handlePhoneClick);
-  };
+  // const handlePhoneClick = (_id) => {
+  //   console.log("handlePhoneClick", handlePhoneClick);
+  // };
 
   return (
     <Container>
@@ -67,7 +67,6 @@ const FavouritePage = () => {
               img={card.image.url}
               alt={card.image.alt}
               onDislikeCard={handleDislikeClick}
-              onPhoneCard={handlePhoneClick}
             />
           </Grid>
         ))}

@@ -11,6 +11,7 @@ import {
 import CardIconsComponent from "./CardIconsComponent";
 import MyCardIconsComponent from "./MyCardIconsComponent";
 import PopupComponent from "./PopupComponent";
+import { useState } from "react";
 
 const MyCardComponent = ({
   _id,
@@ -26,11 +27,23 @@ const MyCardComponent = ({
   onEditClick,
   onDeleteClick,
 }) => {
+  const [openDetails, setOpenDetails] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpenDetails(true);
+  };
+
+  const handleClickClose = () => {
+    setOpenDetails(false);
+  };
   const handleEditCard = () => {
     onEditClick(_id);
   };
   const handleDeleteCard = () => {
     onDeleteClick(_id, bizNumber);
+  };
+  const handlePhoneClick = () => {
+    setOpenDetails(true);
   };
   return (
     <Card>
@@ -42,6 +55,9 @@ const MyCardComponent = ({
         address={address}
         description={description}
         phone={phone}
+        open={openDetails}
+        onClickClose={handleClickClose}
+        onClickOpen={handleClickOpen}
       />
       <CardContent>
         <CardHeader title={title} subheader={subTitle} sx={{ p: 0, mb: 1 }} />
@@ -69,6 +85,7 @@ const MyCardComponent = ({
         <MyCardIconsComponent
           handleClickEditCard={handleEditCard}
           handleDeleteCardClick={handleDeleteCard}
+          handlePhoneClick={handlePhoneClick}
         />
       </CardContent>
     </Card>

@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import FavouriteCardIcons from "./FavouriteCardIcons";
 import PopupComponent from "./PopupComponent";
+import { useState } from "react";
 
 const FavouriteCardComponent = ({
   _id,
@@ -23,13 +24,22 @@ const FavouriteCardComponent = ({
   email,
   bizNumber,
   onDislikeCard,
-  onPhoneCard,
 }) => {
+  const [openDetails, setOpenDetails] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpenDetails(true);
+  };
+
+  const handleClickClose = () => {
+    setOpenDetails(false);
+  };
   const handleDislikeClick = () => {
     onDislikeCard(_id);
   };
   const handlePhoneClick = () => {
-    onPhoneCard(_id);
+    // onPhoneCard(_id);
+    setOpenDetails(true);
   };
 
   return (
@@ -45,6 +55,9 @@ const FavouriteCardComponent = ({
         address={address}
         description={description}
         phone={phone}
+        open={openDetails}
+        onClickClose={handleClickClose}
+        onClickOpen={handleClickOpen}
       />
       <CardContent>
         <CardHeader title={title} subheader={subTitle} sx={{ p: 0, mb: 1 }} />
