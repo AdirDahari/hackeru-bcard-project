@@ -11,6 +11,9 @@ import BizGuard from "../Guard/BizGuard";
 import ProfilePage from "../pages/profile/ProfilePage";
 import FavouritePage from "../pages/favourite/FavouritePage";
 import AboutPage from "../pages/about/AboutPage";
+import SandboxPage from "../pages/Sandbox/SandboxPage";
+import UsersSandbox from "../pages/Sandbox/UsersSandbox";
+import CardsSendbox from "../pages/Sandbox/CardsSandbox";
 
 const Router = () => {
   return (
@@ -19,6 +22,10 @@ const Router = () => {
       <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
       <Route path={ROUTES.ABOUT} element={<AboutPage />} />
+      <Route path={ROUTES.SANDBOX} element={<SandboxPage />}>
+        <Route path="users" element={<UsersSandbox />} />
+        <Route path="cards" element={<CardsSendbox />} />
+      </Route>
       <Route
         path={ROUTES.CREATECARD}
         element={
