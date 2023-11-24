@@ -31,7 +31,7 @@ const HomePage = () => {
       .get("/cards")
       .then(({ data }) => {
         if (userData) data = homePageNormalization(data, userData._id);
-        // console.log("data", data);
+        console.log("data", data);
         initialDataFromServer = data;
         setPages(Math.ceil(data.length / 12));
       })
