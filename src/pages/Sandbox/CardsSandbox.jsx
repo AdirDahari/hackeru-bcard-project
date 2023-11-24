@@ -40,6 +40,7 @@ const CardsSandbox = () => {
         <TableBody>
           {dataFromServer.map((card) => (
             <RowCardComponent
+              key={card._id}
               _id={card._id}
               title={card.title}
               email={card.email}
