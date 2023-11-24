@@ -22,9 +22,6 @@ const CardsSandbox = () => {
       }
     })();
   }, []);
-  const handleRowClick = (_id) => {
-    console.log(_id);
-  };
 
   return (
     <TableContainer component={Paper} sx={{ maxHeight: 550 }}>
@@ -35,6 +32,7 @@ const CardsSandbox = () => {
             <TableCell align="right">Email</TableCell>
             <TableCell align="right">Phone</TableCell>
             <TableCell align="right">Biz number</TableCell>
+            <TableCell align="right">Options</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -46,7 +44,6 @@ const CardsSandbox = () => {
               email={card.email}
               phone={card.phone}
               bizNumber={card.bizNumber}
-              onRowClick={handleRowClick}
             />
           ))}
         </TableBody>

@@ -17,6 +17,9 @@ const iconslogoutLinks = [
   { to: ROUTES.LOGIN, children: "Login" },
   { to: ROUTES.REGISTER, children: "Register" },
 ];
+const isAdminLinks = [
+  { to: ROUTES.SANDBOX, children: "Sandbox" }
+];
 
 // export default myLinks;
-export { mainLogoutLinks, mainLoginLinks, iconsLoginLinks, iconslogoutLinks };
+export { mainLogoutLinks, mainLoginLinks, iconsLoginLinks, iconslogoutLinks, isAdminLinks };
