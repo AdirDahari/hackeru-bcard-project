@@ -5,13 +5,16 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import RowCardComponent from "./RowCardsComponent";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { errorToast } from "../../messages/myToasts";
+import { errorToast, infoToast } from "../../messages/myToasts";
+import RowCardComponent from "./ui/RowCardsComponent";
+import { useNavigate } from "react-router-dom";
+import ROUTES from "../../routes/ROUTES";
 
 const CardsSandbox = () => {
   const [dataFromServer, setDataFromServer] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
     (async () => {
       try {
@@ -22,6 +25,25 @@ const CardsSandbox = () => {
       }
     })();
   }, []);
+
+  const handleDeleteCard = async (_id, bizNumber) => {
+    try {
+      let request = {
+        bizNumber: bizNumber,
+      };
+      await axios.delete("/cards/" + _id, request);
+      setDataFromServer((dataFromServerCopy) =>
+        dataFromServerCopy.filter((card) => card._id !== _id)
+      );
+      infoToast("User deleted");
+    } catch (err) {
+      errorToast("Something worng...");
+    }
+  };
+
+  const handleEditCard = (_id) => {
+    navigate(`${ROUTES.EDITCARD}/${_id}`);
+  };
 
   return (
     <TableContainer component={Paper} sx={{ maxHeight: 550 }}>
@@ -44,6 +66,8 @@ const CardsSandbox = () => {
               email={card.email}
               phone={card.phone}
               bizNumber={card.bizNumber}
+              onDeleteCard={handleDeleteCard}
+              onEditCard={handleEditCard}
             />
           ))}
         </TableBody>

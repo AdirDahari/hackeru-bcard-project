@@ -1,10 +1,8 @@
 import { Box, List, Drawer } from "@mui/material";
-import { useSelector } from "react-redux";
 import Links from "./Links";
+import PropTypes from "prop-types";
 
 const LeftDrawerComponent = ({ isOpen, onCloseDrawer }) => {
-  const loggedIn = useSelector((bigPie) => bigPie.authSlice.loggedIn);
-
   const list = () => (
     <Box
       sx={{ width: { auto: 250 } }}
@@ -29,6 +27,11 @@ const LeftDrawerComponent = ({ isOpen, onCloseDrawer }) => {
       {list()}
     </Drawer>
   );
+};
+
+LeftDrawerComponent.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onCloseDrawer: PropTypes.func.isRequired,
 };
 
 export default LeftDrawerComponent;

@@ -3,36 +3,25 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import MoreIcon from "@mui/icons-material/MoreVert";
-import { Switch, Fragment } from "@mui/material";
+import { Switch } from "@mui/material";
 import Links from "./ui/Links";
 import LeftDrawerComponent from "./ui/LeftDrawerComponent";
 import { useState } from "react";
 import FilterComponent from "./ui/FilterComponent";
 import NavIconLinks from "./ui/NavIconLinks";
+import PropTypes from "prop-types";
 
 const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
-  const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
 
-  const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-  const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
   };
 
   const handleMobileMenuOpen = (event) => {
@@ -49,27 +38,6 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
   const handleCloseDrawerClick = () => {
     setIsOpen(false);
   };
-
-  const menuId = "primary-search-account-menu";
-  // const renderMenu = (
-  //   <Menu
-  //     anchorEl={anchorEl}
-  //     anchorOrigin={{
-  //       vertical: "top",
-  //       horizontal: "right",
-  //     }}
-  //     id={menuId}
-  //     keepMounted
-  //     transformOrigin={{
-  //       vertical: "top",
-  //       horizontal: "right",
-  //     }}
-  //     open={isMenuOpen}
-  //     onClose={handleMenuClose}
-  //   >
-  //     <MenuItem></MenuItem>
-  //   </Menu>
-  // );
 
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
@@ -152,7 +120,6 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
-      {/* {renderMenu} */}
       <LeftDrawerComponent
         isOpen={isOpen}
         onCloseDrawer={handleCloseDrawerClick}
@@ -160,4 +127,10 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
     </Box>
   );
 };
+
+HeaderComponent.propTypes = {
+  isDarkTheme: PropTypes.bool.isRequired,
+  onThemeChange: PropTypes.func.isRequired,
+};
+
 export default HeaderComponent;

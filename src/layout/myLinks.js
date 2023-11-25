@@ -1,11 +1,5 @@
 import ROUTES from "../routes/ROUTES";
 
-// const myLinks = [
-//   { to: ROUTES.HOME, children: "Home" },
-//   { to: ROUTES.REGISTER, children: "Register" },
-//   { to: ROUTES.LOGIN, children: "Login" },
-// ];
-
 const mainLogoutLinks = [{ to: ROUTES.HOME, children: "Home" }, { to: ROUTES.ABOUT, children: "About" }];
 const mainLoginLinks = [{ to: ROUTES.FAVOURITE, children: "Favourite" }];
 
@@ -21,5 +15,4 @@ const isAdminLinks = [
   { to: ROUTES.SANDBOX, children: "Sandbox" }
 ];
 
-// export default myLinks;
 export { mainLogoutLinks, mainLoginLinks, iconsLoginLinks, iconslogoutLinks, isAdminLinks };

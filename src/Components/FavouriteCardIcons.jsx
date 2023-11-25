@@ -1,6 +1,7 @@
 import { Box, IconButton } from "@mui/material";
 import NotInterestedIcon from "@mui/icons-material/NotInterested";
 import PhoneIcon from "@mui/icons-material/Phone";
+import PropTypes from "prop-types";
 
 const FavouriteCardIcons = ({ handleDislike, handlePhone }) => {
   return (
@@ -14,4 +15,9 @@ const FavouriteCardIcons = ({ handleDislike, handlePhone }) => {
     </Box>
   );
 };
+FavouriteCardIcons.protoTypes = {
+  handleDislike: PropTypes.func.isRequired,
+  handlePhone: PropTypes.func.isRequired,
+};
+
 export default FavouriteCardIcons;

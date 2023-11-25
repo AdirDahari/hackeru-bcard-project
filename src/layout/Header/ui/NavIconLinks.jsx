@@ -8,6 +8,7 @@ import { iconsLoginLinks, iconslogoutLinks } from "../../myLinks";
 import { useSelector } from "react-redux";
 import { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const NavIconLinks = ({ isMoblie }) => {
   const loggedIn = useSelector((bigPie) => bigPie.authSlice.loggedIn);
@@ -96,4 +97,9 @@ const NavIconLinks = ({ isMoblie }) => {
       </Fragment>
     );
 };
+
+NavIconLinks.propTypes = {
+  isMoblie: PropTypes.bool.isRequired,
+};
+
 export default NavIconLinks;

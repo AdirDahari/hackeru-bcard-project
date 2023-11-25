@@ -11,6 +11,7 @@ import {
 import FavouriteCardIcons from "./FavouriteCardIcons";
 import PopupComponent from "./PopupComponent";
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 const FavouriteCardComponent = ({
   _id,
@@ -38,7 +39,6 @@ const FavouriteCardComponent = ({
     onDislikeCard(_id);
   };
   const handlePhoneClick = () => {
-    // onPhoneCard(_id);
     setOpenDetails(true);
   };
 
@@ -94,4 +94,22 @@ const FavouriteCardComponent = ({
     </Card>
   );
 };
+FavouriteCardComponent.propTypes = {
+  _id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  subTitle: PropTypes.string.isRequired,
+  phone: PropTypes.string.isRequired,
+  address: PropTypes.string.isRequired,
+  img: PropTypes.string,
+  alt: PropTypes.string,
+  description: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  bizNumber: PropTypes.number.isRequired,
+  onDislikeCard: PropTypes.func.isRequired,
+};
+FavouriteCardComponent.defaultProps = {
+  img: "https://www.livemint.com/lm-img/img/2023/08/14/1600x900/garena_free_fire_max_1688877791610_1691982307589.jpg",
+  alt: "running",
+};
+
 export default FavouriteCardComponent;

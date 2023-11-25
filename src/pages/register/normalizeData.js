@@ -1,4 +1,4 @@
-const normalizeData = (inputsValue) => {
+const normalizeData = (inputsValue, isBusiness) => {
   return {
     name: {
       first: inputsValue.first,
@@ -20,7 +20,7 @@ const normalizeData = (inputsValue) => {
       houseNumber: inputsValue.houseNumber,
       zip: +inputsValue.zip,
     },
-    isBusiness: true,
+    isBusiness: isBusiness,
   };
 };
 export { normalizeData };

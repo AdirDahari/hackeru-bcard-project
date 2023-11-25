@@ -1,11 +1,4 @@
-import { Description } from "@mui/icons-material";
-import {
-  Box,
-  CardActionArea,
-  CardMedia,
-  Grid,
-  Typography,
-} from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -13,20 +6,18 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
-import { Fragment, forwardRef, useState } from "react";
+import { Fragment, forwardRef } from "react";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
 const PopupComponent = ({
-  img,
-  alt,
-  title,
-  description,
-  phone,
-  address,
-  email,
+  title = "",
+  description = "",
+  phone = "",
+  address = "",
+  email = "",
   open = false,
   onClickClose,
 }) => {
@@ -43,7 +34,6 @@ const PopupComponent = ({
       >
         <Fragment>
           <DialogTitle>{title}</DialogTitle>
-
           <DialogContent
             dividers
             sx={{
@@ -111,4 +101,5 @@ const PopupComponent = ({
     </Fragment>
   );
 };
+
 export default PopupComponent;

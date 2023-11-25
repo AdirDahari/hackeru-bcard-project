@@ -8,10 +8,10 @@ import {
   Divider,
   Typography,
 } from "@mui/material";
-import CardIconsComponent from "./CardIconsComponent";
 import MyCardIconsComponent from "./MyCardIconsComponent";
 import PopupComponent from "./PopupComponent";
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 const MyCardComponent = ({
   _id,
@@ -98,4 +98,20 @@ const MyCardComponent = ({
     </Card>
   );
 };
+
+MyCardComponent.propTypes = {
+  _id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  subTitle: PropTypes.string.isRequired,
+  phone: PropTypes.string.isRequired,
+  address: PropTypes.string.isRequired,
+  img: PropTypes.string,
+  alt: PropTypes.string,
+  description: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  bizNumber: PropTypes.number.isRequired,
+  onEditClick: PropTypes.func.isRequired,
+  onDeleteClick: PropTypes.func.isRequired,
+};
+
 export default MyCardComponent;

@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import nextKey from "generate-my-key";
 import { mainLogoutLinks, mainLoginLinks, isAdminLinks } from "../../myLinks";
 import { useSelector } from "react-redux";

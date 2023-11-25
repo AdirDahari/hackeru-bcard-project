@@ -6,11 +6,9 @@ import {
   CardHeader,
   CardMedia,
   Divider,
-  IconButton,
   Typography,
 } from "@mui/material";
 import PropTypes from "prop-types";
-import { useSelector } from "react-redux";
 import CardIconsComponent from "./CardIconsComponent";
 import { useState } from "react";
 import PopupComponent from "./PopupComponent";
@@ -32,7 +30,6 @@ const CardComponent = ({
   onEditCard,
   onLikeCard,
 }) => {
-  const loggedIn = useSelector((bigPie) => bigPie.authSlice.loggedIn);
   const [openDetails, setOpenDetails] = useState(false);
 
   const handleClickOpen = () => {
@@ -44,19 +41,15 @@ const CardComponent = ({
   };
 
   const handlePhoneClick = () => {
-    console.log("you clicked on phone btn");
     setOpenDetails(true);
   };
   const handleDeleteCardClick = () => {
-    console.log("_id to delete (CardComponent)", _id);
     onDeleteCard(_id, bizNumber);
   };
   const handleClickEditCard = () => {
-    // console.log("move to edit card page");
     onEditCard(_id);
   };
   const handleLikeCard = () => {
-    console.log("handleLikeCard");
     onLikeCard(_id);
   };
   return (
@@ -119,15 +112,19 @@ const CardComponent = ({
 CardComponent.propTypes = {
   _id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  subTitle: PropTypes.string,
-  phone: PropTypes.string,
-  address: PropTypes.string,
+  subTitle: PropTypes.string.isRequired,
+  phone: PropTypes.string.isRequired,
+  address: PropTypes.string.isRequired,
   img: PropTypes.string,
   alt: PropTypes.string,
-  like: PropTypes.bool,
-  cardNumber: PropTypes.number,
+  description: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  isLike: PropTypes.bool.isRequired,
+  bizNumber: PropTypes.number.isRequired,
+  user_id: PropTypes.string.isRequired,
   onDeleteCard: PropTypes.func.isRequired,
   onEditCard: PropTypes.func.isRequired,
+  onLikeCard: PropTypes.func.isRequired,
 };
 CardComponent.defaultProps = {
   img: "https://www.livemint.com/lm-img/img/2023/08/14/1600x900/garena_free_fire_max_1688877791610_1691982307589.jpg",

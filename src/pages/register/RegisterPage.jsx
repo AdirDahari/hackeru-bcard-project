@@ -33,6 +33,7 @@ const RegisterPage = () => {
     houseNumber: "",
     zip: "",
   });
+  const [isBusiness, setIsBusiness] = useState(false);
   const navigate = useNavigate();
 
   const handleInputsChange = (e) => {
@@ -50,13 +51,18 @@ const RegisterPage = () => {
         warningToast(errors[1]);
         return;
       }
-      let request = normalizeData(inputsValue);
+      let request = normalizeData(inputsValue, isBusiness);
       const { data } = await axios.post("/users", request);
       console.log("data", data);
       navigate(ROUTES.HOME);
     } catch (err) {
       errorToast("Something worng...");
     }
+  };
+
+  const handleIsBusinessChange = (e) => {
+    console.log(e.target.checked);
+    setIsBusiness(e.target.checked);
   };
 
   return (
@@ -246,7 +252,13 @@ const RegisterPage = () => {
           </Grid>
           <Grid item xs={12} sm={6}>
             <FormControlLabel
-              control={<Checkbox value="allowExtraEmails" color="primary" />}
+              control={
+                <Checkbox
+                  value={isBusiness}
+                  onChange={handleIsBusinessChange}
+                  color="primary"
+                />
+              }
               label="Business Account"
             />
           </Grid>

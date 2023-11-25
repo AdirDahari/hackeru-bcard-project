@@ -5,13 +5,17 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import RowUserComponent from "./RowUserComponent";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { errorToast, infoToast } from "../../messages/myToasts";
+import RowUserComponent from "./ui/RowUserComponent";
+import { useNavigate } from "react-router-dom";
+import ROUTES from "../../routes/ROUTES";
 
 const UsersSandbox = () => {
   const [dataFromServer, setDataFromServer] = useState([]);
+  const navigate = useNavigate();
   const userData = useSelector((bigPie) => bigPie.authSlice.userData);
 
   useEffect(() => {
@@ -20,12 +24,28 @@ const UsersSandbox = () => {
         if (!userData.isAdmin) return;
         let { data } = await axios.get("/users");
         setDataFromServer(data);
-        console.log("data", data);
       } catch (err) {
-        console.log("err", err);
+        errorToast("Something worng...");
       }
     })();
   }, []);
+
+  const handleDeleteUser = async (_id) => {
+    try {
+      await axios.delete("/users/" + _id);
+      setDataFromServer((dataFromServerCopy) =>
+        dataFromServerCopy.filter((user) => user._id !== _id)
+      );
+      infoToast("User deleted");
+    } catch (err) {
+      errorToast("Something wrong...");
+    }
+  };
+
+  const handleEditUser = (_id) => {
+    console.log("handleEditUser", _id);
+    navigate(`${ROUTES.EDITUSER}/${_id}`);
+  };
 
   return (
     <TableContainer component={Paper} sx={{ maxHeight: 550 }}>
@@ -48,6 +68,8 @@ const UsersSandbox = () => {
               email={user.email}
               phone={user.phone}
               isBusiness={user.isBusiness}
+              onDeleteUser={handleDeleteUser}
+              onEditCard={handleEditUser}
             />
           ))}
         </TableBody>

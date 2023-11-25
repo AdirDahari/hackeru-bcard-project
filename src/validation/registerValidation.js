@@ -21,9 +21,9 @@ const registerSchema = Joi.object({
       )
     )
     .messages({
-      "string.pattern.base": "the password should be...",
+      "string.pattern.base": "the password must be at least 5 chars long, upper and lower case, and special char",
       "string.empty":
-        "password must be filled with something that you will forget",
+        "password must be filled",
     })
     .min(7)
     .max(20)

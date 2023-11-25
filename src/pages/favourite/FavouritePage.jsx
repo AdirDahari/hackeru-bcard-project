@@ -61,6 +61,8 @@ const FavouritePage = () => {
               _id={card._id}
               title={card.title}
               subTitle={card.subtitle}
+              email={card.email}
+              description={card.description}
               address={`${card.address.city}, ${card.address.street} ${card.address.houseNumber}`}
               phone={card.phone}
               bizNumber={card.bizNumber}
