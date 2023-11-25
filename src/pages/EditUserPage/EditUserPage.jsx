@@ -1,7 +1,5 @@
 import { Fragment, useState } from "react";
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
@@ -11,6 +9,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Divider } from "@mui/material";
 import { validateEditUser } from "../../validation/editUserValidation";
 import { normalizeEditUser } from "./normalizeEditUser";
+import EditUserInputsComponent from "./EditUserInputsComponent";
 
 const EditUserPage = () => {
   const [inputsValue, setInputsValue] = useState({
@@ -70,155 +69,11 @@ const EditUserPage = () => {
           alignItems: "center",
         }}
       >
+        <EditUserInputsComponent
+          inputsValue={inputsValue}
+          onInputsChange={handleInputsChange}
+        />
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={4}>
-              <TextField
-                autoComplete="given-name"
-                name="first"
-                required
-                fullWidth
-                id="first"
-                label="First Name"
-                autoFocus
-                value={inputsValue.first}
-                onChange={handleInputsChange}
-              />
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <TextField
-                autoComplete="given-name"
-                name="middle"
-                fullWidth
-                id="middle"
-                label="Middle Name"
-                autoFocus
-                value={inputsValue.middle}
-                onChange={handleInputsChange}
-              />
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <TextField
-                required
-                fullWidth
-                id="last"
-                label="Last Name"
-                name="last"
-                autoComplete="family-name"
-                value={inputsValue.last}
-                onChange={handleInputsChange}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                required
-                fullWidth
-                name="phone"
-                label="Phone"
-                id="phone"
-                autoComplete="new-phone"
-                value={inputsValue.phone}
-                onChange={handleInputsChange}
-              />
-            </Grid>
-
-            <Grid item xs={12} sm={6}>
-              <TextField
-                fullWidth
-                name="state"
-                label="State"
-                id="state"
-                autoComplete="new-state"
-                value={inputsValue.state}
-                onChange={handleInputsChange}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                required
-                fullWidth
-                name="country"
-                label="Country"
-                id="country"
-                autoComplete="new-country"
-                value={inputsValue.country}
-                onChange={handleInputsChange}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                required
-                fullWidth
-                name="city"
-                label="City"
-                id="city"
-                autoComplete="new-city"
-                value={inputsValue.city}
-                onChange={handleInputsChange}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                required
-                fullWidth
-                name="street"
-                label="Street"
-                id="street"
-                autoComplete="new-street"
-                value={inputsValue.street}
-                onChange={handleInputsChange}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                required
-                fullWidth
-                name="houseNumber"
-                label="House Number"
-                id="houseNumber"
-                autoComplete="new-houseNumber"
-                value={inputsValue.houseNumber}
-                onChange={handleInputsChange}
-              />
-            </Grid>
-
-            <Grid item xs={12} sm={6}>
-              <TextField
-                fullWidth
-                required
-                name="url"
-                label="Url"
-                id="url"
-                autoComplete="new-url"
-                value={inputsValue.url}
-                onChange={handleInputsChange}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                fullWidth
-                required
-                name="alt"
-                label="Alt"
-                id="alt"
-                autoComplete="new-alt"
-                value={inputsValue.alt}
-                onChange={handleInputsChange}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                fullWidth
-                required
-                name="zip"
-                label="Zip"
-                id="zip"
-                autoComplete="new-zip"
-                value={inputsValue.zip}
-                onChange={handleInputsChange}
-              />
-            </Grid>
-          </Grid>
           <Button
             type="submit"
             fullWidth
