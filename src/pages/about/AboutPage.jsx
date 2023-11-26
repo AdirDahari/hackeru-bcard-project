@@ -2,7 +2,7 @@ import { Container, Divider, Typography } from "@mui/material";
 
 const AboutPage = () => {
   return (
-    <Container>
+    <Container sx={{ height: "100%" }}>
       <Typography variant="h1">About us</Typography>
       <Typography variant="h4">
         Here you can hear about us and our website

@@ -74,22 +74,27 @@ const CardComponent = ({
         onClickClose={handleClickClose}
       />
       <CardContent>
-        <CardHeader title={title} subheader={subTitle} sx={{ p: 0, mb: 1 }} />
+        <Typography variant="h5" noWrap sx={{ p: 0, mb: 1 }}>
+          {title}
+        </Typography>
+        <Typography sx={{ p: 0, mb: 1 }} variant="body2">
+          {subTitle}
+        </Typography>
         <Divider />
         <Box sx={{ mt: 1 }}>
-          <Typography variant="body2">
+          <Typography noWrap variant="body2">
             <Typography fontWeight="700" variant="subtitle1" component="span">
               Phone:{" "}
             </Typography>
             {phone}
           </Typography>
-          <Typography variant="body2">
+          <Typography noWrap variant="body2">
             <Typography fontWeight="700" variant="subtitle1" component="span">
               Address:{" "}
             </Typography>
             {address}
           </Typography>
-          <Typography variant="body2">
+          <Typography noWrap variant="body2">
             <Typography fontWeight="700" variant="subtitle1" component="span">
               Card Number:{" "}
             </Typography>
