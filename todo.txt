@@ -1,10 +1,8 @@
 Popup card details - (*)
 Style
-Clean code + Props types
 
 *
 - add map api to popup to all cards components
-- proptypes in PopupComponent and EditUserInputsComponent bug
 *
 
 !!! Clean code + Props types from register

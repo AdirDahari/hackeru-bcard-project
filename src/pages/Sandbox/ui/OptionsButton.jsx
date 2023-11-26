@@ -7,6 +7,7 @@ import Divider from "@mui/material/Divider";
 import DeleteIcon from "@mui/icons-material/Delete";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -105,4 +106,11 @@ const OptionsButton = ({ _id, onDeleteClick, onEditClick }) => {
     </div>
   );
 };
+
+OptionsButton.propTypes = {
+  _id: PropTypes.string.isRequired,
+  onDeleteClick: PropTypes.func.isRequired,
+  onEditClick: PropTypes.func.isRequired,
+};
+
 export default OptionsButton;

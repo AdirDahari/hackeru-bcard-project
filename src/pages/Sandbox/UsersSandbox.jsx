@@ -43,7 +43,6 @@ const UsersSandbox = () => {
   };
 
   const handleEditUser = (_id) => {
-    console.log("handleEditUser", _id);
     navigate(`${ROUTES.EDITUSER}/${_id}`);
   };
 
@@ -69,7 +68,7 @@ const UsersSandbox = () => {
               phone={user.phone}
               isBusiness={user.isBusiness}
               onDeleteUser={handleDeleteUser}
-              onEditCard={handleEditUser}
+              onEditUser={handleEditUser}
             />
           ))}
         </TableBody>

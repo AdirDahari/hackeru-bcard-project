@@ -1,5 +1,6 @@
 import { TableCell, TableRow } from "@mui/material";
 import OptionsButton from "./OptionsButton";
+import PropTypes from "prop-types";
 
 const RowUserComponent = ({
   _id,
@@ -8,7 +9,7 @@ const RowUserComponent = ({
   phone,
   isBusiness,
   onDeleteUser,
-  onEditCard,
+  onEditUser,
 }) => {
   return (
     <TableRow hover>
@@ -21,11 +22,22 @@ const RowUserComponent = ({
       <TableCell align="right">
         <OptionsButton
           onDeleteClick={onDeleteUser}
-          onEditClick={onEditCard}
+          onEditClick={onEditUser}
           _id={_id}
         />
       </TableCell>
     </TableRow>
   );
 };
+
+RowUserComponent.propTypes = {
+  _id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  phone: PropTypes.string.isRequired,
+  isBusiness: PropTypes.bool.isRequired,
+  onDeleteUser: PropTypes.func.isRequired,
+  onEditUser: PropTypes.func.isRequired,
+};
+
 export default RowUserComponent;

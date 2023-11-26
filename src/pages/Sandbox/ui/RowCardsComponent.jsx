@@ -1,5 +1,6 @@
 import { TableCell, TableRow } from "@mui/material";
 import OptionsButton from "./OptionsButton";
+import PropTypes from "prop-types";
 
 const RowCardComponent = ({
   _id,
@@ -31,4 +32,15 @@ const RowCardComponent = ({
     </TableRow>
   );
 };
+
+RowCardComponent.propTypes = {
+  _id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  phone: PropTypes.string.isRequired,
+  bizNumber: PropTypes.number.isRequired,
+  onDeleteCard: PropTypes.func.isRequired,
+  onEditCard: PropTypes.func.isRequired,
+};
+
 export default RowCardComponent;
