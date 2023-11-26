@@ -116,8 +116,8 @@ const LoginPage = () => {
               value={emailValue}
               onChange={handleEmailInputChange}
             />
-            {errorsState && errorsState.email && (
-              <Alert severity="warning">{errorsState.email}</Alert>
+            {errorsState && errorsState[0].email && (
+              <Alert severity="warning">{errorsState[0].email}</Alert>
             )}
             <TextField
               margin="normal"
@@ -131,8 +131,8 @@ const LoginPage = () => {
               value={passwordValue}
               onChange={handlePasswordInputChange}
             />
-            {errorsState && errorsState.password && (
-              <Alert severity="warning">{errorsState.password}</Alert>
+            {errorsState && errorsState[0].password && (
+              <Alert severity="warning">{errorsState[0].password}</Alert>
             )}
             <FormControlLabel
               control={

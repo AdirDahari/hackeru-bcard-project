@@ -4,16 +4,13 @@ import {
   Container,
   Divider,
   Grid,
-  Stack,
-  Toolbar,
   Typography,
 } from "@mui/material";
 import axios from "axios";
 import { Fragment, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/ROUTES";
-import CardComponent from "../../components/CardComponent";
 import MyCardComponent from "../../components/MyCardComponent";
 import { errorToast, infoToast } from "../../messages/myToasts";
 
@@ -54,7 +51,6 @@ const ProfilePage = () => {
     (async () => {
       try {
         let { data } = await axios.get("/users/" + userData._id);
-        // console.log("userDataFromServer", data);
         setUserDataFromServer(data);
       } catch (err) {
         errorToast("Something worng...");

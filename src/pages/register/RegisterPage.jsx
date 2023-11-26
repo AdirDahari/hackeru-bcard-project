@@ -4,7 +4,6 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -46,14 +45,12 @@ const RegisterPage = () => {
     try {
       event.preventDefault();
       const errors = validateRegister(inputsValue);
-      console.log(errors);
       if (errors) {
         warningToast(errors[1]);
         return;
       }
       let request = normalizeData(inputsValue, isBusiness);
-      const { data } = await axios.post("/users", request);
-      console.log("data", data);
+      await axios.post("/users", request);
       navigate(ROUTES.HOME);
     } catch (err) {
       errorToast("Something worng...");
@@ -61,7 +58,6 @@ const RegisterPage = () => {
   };
 
   const handleIsBusinessChange = (e) => {
-    console.log(e.target.checked);
     setIsBusiness(e.target.checked);
   };
 
