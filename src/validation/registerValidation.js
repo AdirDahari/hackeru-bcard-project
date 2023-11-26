@@ -9,7 +9,7 @@ const registerSchema = Joi.object({
     .min(9)
     .max(11)
     .pattern(/^\+?(972|0)(\-)?0?(([23489]{1}\d{7})|[5]{1}\d{8})$/)
-    .required(),
+    .required().messages({ "string.pattern.base": "number is not valid" }),
   email: Joi.string()
     .email({ tlds: { allow: false } })
     .min(5)
@@ -22,8 +22,6 @@ const registerSchema = Joi.object({
     )
     .messages({
       "string.pattern.base": "the password must be at least 5 chars long, upper and lower case, and special char",
-      "string.empty":
-        "password must be filled",
     })
     .min(7)
     .max(20)
@@ -36,7 +34,6 @@ const registerSchema = Joi.object({
   street: Joi.string().min(2).max(256).required(),
   houseNumber: Joi.number().min(2).max(256).required(),
   zip: Joi.number().min(2).max(256).allow(""),
-  // isBusiness: Joi.boolean().required(),
 });
 
 const validateRegister = (inputToCheck) =>

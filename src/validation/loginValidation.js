@@ -12,9 +12,7 @@ const loginSchema = Joi.object({
       )
     )
     .messages({
-      "string.pattern.base": "the password should be...",
-      "string.empty":
-        "password must be filled with something that you will forget",
+      "string.pattern.base": "The password must be at least 5 chars long, upper and lower case, and special char",
     })
     .min(2)
     .max(20)

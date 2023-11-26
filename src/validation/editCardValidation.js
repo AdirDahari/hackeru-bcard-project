@@ -9,7 +9,7 @@ const editCardSchema = Joi.object({
         .min(9)
         .max(11)
         .pattern(/^\+?(972|0)(\-)?0?(([23489]{1}\d{7})|[5]{1}\d{8})$/)
-        .required(),
+        .required().messages({ "string.pattern.base": "number is not valid" }),
     email: Joi.string()
         .email({ tlds: { allow: false } })
         .min(5)

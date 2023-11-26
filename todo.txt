@@ -1,14 +1,10 @@
 Popup card details - (*)
-All Admin shit Sandbox - (*)
 Style
 Clean code + Props types
-warning input in register, createcard, editcard, edituser (validation).
 
 *
 - add map api to popup to all cards components
-- update user zip bug
 - proptypes in PopupComponent and EditUserInputsComponent bug
-- change in HomePage from then to try
 *
 
 !!! Clean code + Props types from register

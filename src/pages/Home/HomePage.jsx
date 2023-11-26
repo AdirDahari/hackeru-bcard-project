@@ -25,17 +25,18 @@ const HomePage = () => {
   const navigate = useNavigate();
   const userData = useSelector((bigPie) => bigPie.authSlice.userData);
   const query = useQueryParams();
+
   useEffect(() => {
-    axios
-      .get("/cards")
-      .then(({ data }) => {
+    (async () => {
+      try {
+        let { data } = await axios.get("/cards");
         if (userData) data = homePageNormalization(data, userData._id);
         initialDataFromServer = data;
         setPages(Math.ceil(data.length / 12));
-      })
-      .catch((err) => {
+      } catch (err) {
         errorToast("Something worng...");
-      });
+      }
+    })();
   }, []);
 
   useEffect(() => {

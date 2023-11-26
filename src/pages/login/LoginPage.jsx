@@ -35,9 +35,8 @@ const LoginPage = () => {
         email: emailValue,
         password: passwordValue,
       });
-      setErrorsState(joiResponse);
       if (joiResponse) {
-        warningToast(joiResponse[1]);
+        setErrorsState(joiResponse);
         return;
       }
       let { data } = await axios.post("/users/login", {
@@ -116,8 +115,8 @@ const LoginPage = () => {
               value={emailValue}
               onChange={handleEmailInputChange}
             />
-            {errorsState && errorsState[0].email && (
-              <Alert severity="warning">{errorsState[0].email}</Alert>
+            {errorsState && errorsState.email && (
+              <Alert severity="warning">{errorsState.email}</Alert>
             )}
             <TextField
               margin="normal"
@@ -131,8 +130,8 @@ const LoginPage = () => {
               value={passwordValue}
               onChange={handlePasswordInputChange}
             />
-            {errorsState && errorsState[0].password && (
-              <Alert severity="warning">{errorsState[0].password}</Alert>
+            {errorsState && errorsState.password && (
+              <Alert severity="warning">{errorsState.password}</Alert>
             )}
             <FormControlLabel
               control={
