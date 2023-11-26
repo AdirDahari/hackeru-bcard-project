@@ -24,14 +24,12 @@ const HomePage = () => {
   const [page, setPage] = useState(1);
   const navigate = useNavigate();
   const userData = useSelector((bigPie) => bigPie.authSlice.userData);
-  const loggedIn = useSelector((bigPie) => bigPie.authSlice.loggedIn);
   const query = useQueryParams();
   useEffect(() => {
     axios
       .get("/cards")
       .then(({ data }) => {
         if (userData) data = homePageNormalization(data, userData._id);
-        console.log("data", data);
         initialDataFromServer = data;
         setPages(Math.ceil(data.length / 12));
       })
@@ -86,7 +84,6 @@ const HomePage = () => {
     try {
       await axios.patch("/cards/" + _id, card);
       setDataFromServer((currentData) => {
-        console.log("currentData", currentData);
         currentData.map((data) => {
           if (data._id === _id) {
             data.likes = !data.likes;

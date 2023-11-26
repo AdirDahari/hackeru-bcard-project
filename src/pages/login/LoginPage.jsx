@@ -1,4 +1,3 @@
-// import * as React from "react";
 import { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -13,12 +12,7 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import axios from "axios";
-import { jwtDecode } from "jwt-decode";
-import { useDispatch, useSelector } from "react-redux";
-import { authActions } from "../../store/authSlice";
-import CopyrightComponent from "./ui/CopyrightComponent";
 import ROUTES from "../../routes/ROUTES";
 import { validateLogin } from "../../validation/loginValidation";
 import { Alert } from "@mui/material";
@@ -27,20 +21,13 @@ import { storeToken } from "../../service/storageService";
 import { successToast, warningToast } from "../../messages/myToasts";
 
 const LoginPage = () => {
-  /* top lvl for hooks */
-  /*   
-   let emailArrState = useState("")
-   emailArrState[0] -> value of current state, in our case ""
-   emailArrState[1] -> function to sync dom and virtual dom
-   !we never modify emailArrState[0] 
-   */
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
   const [rememberMe, setRememberMe] = useState(true);
   const [errorsState, setErrorsState] = useState(null);
   const navigate = useNavigate();
   const autoLogin = useAutoLogin();
-  /* logic lvl for js */
+
   const handleSubmit = async (event) => {
     try {
       event.preventDefault();
@@ -59,7 +46,7 @@ const LoginPage = () => {
       });
       storeToken(data, rememberMe);
       successToast("You logged in successfully");
-      autoLogin(true); //skip token test
+      autoLogin(true);
       navigate(ROUTES.HOME);
     } catch (err) {
       let { response } = err;
@@ -75,7 +62,7 @@ const LoginPage = () => {
   const handleRememberMeChange = () => {
     setRememberMe(!rememberMe);
   };
-  /* template lvl for html */
+
   return (
     <Grid container component="main" sx={{ height: "100vh" }}>
       <CssBaseline />
@@ -178,7 +165,6 @@ const LoginPage = () => {
                 </Link>
               </Grid>
             </Grid>
-            <CopyrightComponent sx={{ mt: 5 }} />
           </Box>
         </Box>
       </Grid>

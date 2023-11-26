@@ -1,6 +1,6 @@
 import { Container, Divider, Grid, Typography } from "@mui/material";
 import axios from "axios";
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import FavouriteCardComponent from "../../components/FavouriteCardComponent";
 import { errorToast, infoToast } from "../../messages/myToasts";
@@ -42,10 +42,6 @@ const FavouritePage = () => {
       errorToast("Something wrong...");
     }
   };
-
-  // const handlePhoneClick = (_id) => {
-  //   console.log("handlePhoneClick", handlePhoneClick);
-  // };
 
   return (
     <Container>
