@@ -30,7 +30,8 @@ const HomePage = () => {
     (async () => {
       try {
         let { data } = await axios.get("/cards");
-        if (userData) data = homePageNormalization(data, userData._id);
+        if (userData)
+          data = homePageNormalization(data, userData._id ? userData._id : "");
         initialDataFromServer = data;
         setPages(Math.ceil(data.length / 12));
       } catch (err) {
