@@ -5,14 +5,16 @@ import LoginIcon from "@mui/icons-material/Login";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { iconsLoginLinks, iconslogoutLinks } from "../../myLinks";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
+import { authActions } from "../../../store/authSlice";
 
 const NavIconLinks = ({ isMoblie }) => {
   const loggedIn = useSelector((bigPie) => bigPie.authSlice.loggedIn);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleMenuItemClick = (e) => {
     try {
@@ -30,7 +32,7 @@ const NavIconLinks = ({ isMoblie }) => {
     } else if (sessionStorage.getItem("token")) {
       sessionStorage.removeItem("token");
     } else return;
-    window.location.reload(false);
+    dispatch(authActions.logout());
   };
 
   if (isMoblie)
