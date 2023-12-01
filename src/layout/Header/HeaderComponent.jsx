@@ -13,6 +13,8 @@ import { useState } from "react";
 import FilterComponent from "./ui/FilterComponent";
 import NavIconLinks from "./ui/NavIconLinks";
 import PropTypes from "prop-types";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LightModeIcon from "@mui/icons-material/LightMode";
 
 const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
@@ -28,8 +30,8 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  const handleThemeChange = (event) => {
-    onThemeChange(event.target.checked);
+  const handleThemeChange = () => {
+    onThemeChange(!isDarkTheme);
   };
 
   const handleOpenDrawerClick = () => {
@@ -61,8 +63,8 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
   );
 
   return (
-    <Box sx={{ flexGrow: 1, mb: 2 }}>
-      <AppBar position="static">
+    <Box sx={{ flexGrow: 1, mb: 1 }}>
+      <AppBar position="static" color="navColor">
         <Toolbar>
           <IconButton
             size="large"
@@ -94,18 +96,20 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
           <FilterComponent />
           <Box
             sx={{
-              my: 2,
-              p: 1,
+              m: 2,
             }}
           >
-            <Typography sx={{ display: { xs: "none", md: "inline" } }}>
-              {isDarkTheme ? "Dark" : "Light"} Mode
-            </Typography>
-            <Switch checked={isDarkTheme} onChange={handleThemeChange} />
+            <IconButton onClick={handleThemeChange}>
+              {isDarkTheme ? (
+                <DarkModeIcon fontSize="large" />
+              ) : (
+                <LightModeIcon fontSize="large" />
+              )}
+            </IconButton>
           </Box>
           <Box sx={{ flexGrow: 1 }} />
           <NavIconLinks isMoblie={false} />
-          <Box sx={{ display: { xs: "flex", md: "none" } }}>
+          <Box sx={{ display: { xs: "flex", md: "flex", lg: "none" } }}>
             <IconButton
               size="large"
               aria-label="show more"

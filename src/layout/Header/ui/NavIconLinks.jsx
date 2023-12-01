@@ -41,20 +41,28 @@ const NavIconLinks = ({ isMoblie }) => {
         {loggedIn &&
           iconsLoginLinks.map((myLink, index) => (
             <MenuItem to={myLink.to} key={index} onClick={handleMenuItemClick}>
-              {index === 0 ? <AccountCircle /> : <CreditCardIcon />}
+              {index === 0 ? (
+                <AccountCircle fontSize="large" />
+              ) : (
+                <CreditCardIcon />
+              )}
               <Typography>&nbsp; {myLink.children}</Typography>
             </MenuItem>
           ))}
         {loggedIn && (
           <MenuItem onClick={handleLogOut}>
-            <LogoutIcon />
+            <LogoutIcon fontSize="large" />
             <Typography>&nbsp; Logout</Typography>
           </MenuItem>
         )}
         {!loggedIn &&
           iconslogoutLinks.map((myLink, index) => (
             <MenuItem to={myLink.to} key={index} onClick={handleMenuItemClick}>
-              {index === 0 ? <LoginIcon /> : <AppRegistrationIcon />}
+              {index === 0 ? (
+                <LoginIcon fontSize="large" />
+              ) : (
+                <AppRegistrationIcon />
+              )}
               <Typography>&nbsp; {myLink.children}</Typography>
             </MenuItem>
           ))}
@@ -69,7 +77,7 @@ const NavIconLinks = ({ isMoblie }) => {
               onClick={handleMenuItemClick}
               key={index}
               to={myLink.to}
-              sx={{ display: { xs: "none", md: "flex" } }}
+              sx={{ display: { xs: "none", md: "none", lg: "flex" } }}
             >
               {index === 0 ? <AccountCircle /> : <CreditCardIcon />}
               <Typography>&nbsp; {myLink.children}</Typography>
@@ -78,7 +86,7 @@ const NavIconLinks = ({ isMoblie }) => {
         {loggedIn && (
           <MenuItem
             onClick={handleLogOut}
-            sx={{ display: { xs: "none", md: "flex" } }}
+            sx={{ display: { xs: "none", md: "none", lg: "flex" } }}
           >
             <LogoutIcon />
             <Typography>&nbsp; Logout</Typography>
@@ -90,7 +98,7 @@ const NavIconLinks = ({ isMoblie }) => {
               onClick={handleMenuItemClick}
               key={index}
               to={myLink.to}
-              sx={{ display: { xs: "none", md: "flex" } }}
+              sx={{ display: { xs: "none", md: "none", lg: "flex" } }}
             >
               {index === 0 ? <LoginIcon /> : <AppRegistrationIcon />}
               <Typography>&nbsp; {myLink.children}</Typography>

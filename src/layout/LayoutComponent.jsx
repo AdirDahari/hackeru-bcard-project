@@ -13,8 +13,9 @@ const LayoutComponent = ({ children }) => {
   const dispatch = useDispatch();
 
   const themes = tmc({
-    "text.headerColor": "!#b219e6",
-    "text.headerActive": "#9e165c",
+    "text.headerColor": "!#145DA0",
+    "text.headerActive": "!#BEAEE2",
+    navColor: "#0C2D48",
     favActive: "*#FB0000",
   });
 

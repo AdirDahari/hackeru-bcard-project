@@ -4,7 +4,8 @@ import { ToastContainer } from "react-toastify";
 import Router from "./routes/Router";
 import useAutoLogin from "./hooks/useAutoLogin";
 import { useEffect, useState } from "react";
-import { LinearProgress } from "@mui/material";
+import { Box, LinearProgress } from "@mui/material";
+import { useSelector } from "react-redux";
 
 const App = () => {
   const [doneAuth, setDoneAuth] = useState(false);
