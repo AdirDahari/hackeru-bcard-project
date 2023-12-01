@@ -14,6 +14,7 @@ import NavIconLinks from "./ui/NavIconLinks";
 import PropTypes from "prop-types";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
+import WbSunnyIcon from "@mui/icons-material/WbSunny";
 
 const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
@@ -100,9 +101,9 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
           >
             <IconButton onClick={handleThemeChange}>
               {isDarkTheme ? (
-                <DarkModeIcon fontSize="large" />
+                <WbSunnyIcon fontSize="large" />
               ) : (
-                <LightModeIcon fontSize="large" />
+                <DarkModeIcon fontSize="large" />
               )}
             </IconButton>
           </Box>

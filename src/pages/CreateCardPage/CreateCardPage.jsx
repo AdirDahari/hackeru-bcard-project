@@ -267,7 +267,13 @@ const CreateCardPage = () => {
         <Grid item lg={8} md={8} sm={8} xs>
           <Button
             variant="outlined"
-            sx={{ mt: 2, width: "100%", ml: "0%", bgcolor: "lightskyblue" }}
+            sx={{
+              mt: 2,
+              width: "100%",
+              ml: "0%",
+              bgcolor: "lightskyblue",
+              color: "black",
+            }}
             onClick={handleCreateCardClick}
           >
             Create New Card

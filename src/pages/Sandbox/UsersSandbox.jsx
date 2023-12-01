@@ -47,7 +47,7 @@ const UsersSandbox = () => {
   };
 
   return (
-    <TableContainer component={Paper} sx={{ maxHeight: 550 }}>
+    <TableContainer component={Paper} sx={{ maxHeight: 600 }}>
       <Table stickyHeader sx={{ minWidth: 650 }} aria-label="caption table">
         <TableHead>
           <TableRow>

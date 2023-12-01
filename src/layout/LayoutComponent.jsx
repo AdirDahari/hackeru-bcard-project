@@ -14,10 +14,13 @@ const LayoutComponent = ({ children }) => {
 
   const themes = tmc({
     primary: {
-      main: "#0C2D48",
+      main: "!#0C2D48",
     },
-    "text.headerColor": "!#145DA0",
-    "text.headerActive": "!#BEAEE2",
+    secondary: {
+      main: "!#7B66FF",
+    },
+    "text.headerColor": "*#F5F7F8",
+    "text.headerActive": "*#BEAEE2",
     favActive: "*#FB0000",
   });
 

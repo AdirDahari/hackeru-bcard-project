@@ -21,7 +21,7 @@ const SandboxPage = () => {
   return (
     <Container>
       <Typography variant="h1">Sandbox</Typography>
-      <Typography sx={{ mb: 2 }} variant="h4">
+      <Typography sx={{ my: 1 }} variant="h4">
         Manage bcards users and cards
       </Typography>
       <Divider />
