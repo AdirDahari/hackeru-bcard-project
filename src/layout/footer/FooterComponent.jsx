@@ -5,7 +5,7 @@ import Links from "../header/ui/Links";
 const FooterComponent = () => {
   return (
     <Fragment>
-      <Divider></Divider>
+      <Divider sx={{ mt: 1 }}></Divider>
       <Box
         sx={{
           flexGrow: 1,
