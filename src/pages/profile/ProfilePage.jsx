@@ -63,7 +63,6 @@ const ProfilePage = () => {
       try {
         let { data } = await axios.get("/cards/my-cards");
         setMyCard(data);
-        console.log("myCard", myCard);
       } catch (err) {
         errorToast("Something worng...");
       }
@@ -130,6 +129,8 @@ const ProfilePage = () => {
                 _id={card._id}
                 title={card.title}
                 subTitle={card.subtitle}
+                description={card.description}
+                email={card.email}
                 address={`${card.address.city}, ${card.address.street} ${card.address.houseNumber}`}
                 img={card.image.url}
                 alt={card.image.alt}

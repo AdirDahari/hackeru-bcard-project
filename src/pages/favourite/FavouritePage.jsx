@@ -1,13 +1,23 @@
-import { Container, Divider, Grid, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Divider,
+  Grid,
+  Typography,
+} from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import FavouriteCardComponent from "../../components/FavouriteCardComponent";
 import { errorToast, infoToast } from "../../messages/myToasts";
+import { useNavigate } from "react-router-dom";
+import ROUTES from "../../routes/ROUTES";
 
 const FavouritePage = () => {
   const [dataFromServer, setdataFromServer] = useState([]);
   const userData = useSelector((bigPie) => bigPie.authSlice.userData);
+  const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
@@ -43,6 +53,10 @@ const FavouritePage = () => {
     }
   };
 
+  const handleNavHomeClick = () => {
+    navigate(ROUTES.HOME);
+  };
+
   return (
     <Container>
       <Typography variant="h1">Favourite cards</Typography>
@@ -50,25 +64,40 @@ const FavouritePage = () => {
         Here you can find your favourite cards
       </Typography>
       <Divider sx={{ m: 2 }} />
-      <Grid container spacing={2}>
-        {dataFromServer.map((card) => (
-          <Grid item key={card._id} xs={12} sm={6} md={4} lg={3}>
-            <FavouriteCardComponent
-              _id={card._id}
-              title={card.title}
-              subTitle={card.subtitle}
-              email={card.email}
-              description={card.description}
-              address={`${card.address.city}, ${card.address.street} ${card.address.houseNumber}`}
-              phone={card.phone}
-              bizNumber={card.bizNumber}
-              img={card.image.url}
-              alt={card.image.alt}
-              onDislikeCard={handleDislikeClick}
-            />
-          </Grid>
-        ))}
-      </Grid>
+      {dataFromServer ? (
+        <Grid container spacing={2}>
+          {dataFromServer.map((card) => (
+            <Grid item key={card._id} xs={12} sm={6} md={4} lg={3}>
+              <FavouriteCardComponent
+                _id={card._id}
+                title={card.title}
+                subTitle={card.subtitle}
+                email={card.email}
+                description={card.description}
+                address={`${card.address.city}, ${card.address.street} ${card.address.houseNumber}`}
+                phone={card.phone}
+                bizNumber={card.bizNumber}
+                img={card.image.url}
+                alt={card.image.alt}
+                onDislikeCard={handleDislikeClick}
+              />
+            </Grid>
+          ))}
+        </Grid>
+      ) : (
+        <Box sx={{ my: 10 }}>
+          <Typography variant="h4">
+            Go to home page and pick your favourite cards, have fun!
+          </Typography>
+          <Button
+            sx={{ m: 2 }}
+            variant="contained"
+            onClick={handleNavHomeClick}
+          >
+            Home Page
+          </Button>
+        </Box>
+      )}
     </Container>
   );
 };

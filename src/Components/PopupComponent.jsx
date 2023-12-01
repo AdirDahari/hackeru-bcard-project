@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, CardMedia } from "@mui/material";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -13,11 +13,13 @@ const Transition = forwardRef(function Transition(props, ref) {
 });
 
 const PopupComponent = ({
-  title = "",
-  description = "",
-  phone = "",
-  address = "",
-  email = "",
+  title,
+  description,
+  phone,
+  address,
+  email,
+  img,
+  alt,
   open = false,
   onClickClose,
 }) => {
@@ -28,7 +30,7 @@ const PopupComponent = ({
         TransitionComponent={Transition}
         keepMounted
         fullWidth={true}
-        maxWidth="md"
+        maxWidth="sm"
         onClose={onClickClose}
         aria-describedby="alert-dialog-slide-description"
       >
@@ -37,7 +39,7 @@ const PopupComponent = ({
           <DialogContent
             dividers
             sx={{
-              display: "flex",
+              display: { xs: "block", md: "flex" },
               justifyContent: "space-between",
             }}
           >
@@ -85,12 +87,18 @@ const PopupComponent = ({
             </Box>
             <Box
               sx={{
-                borderRadius: "50%",
-                mr: 1,
+                maxWidth: "240px",
+                p: 1,
+                m: 2,
                 backgroundColor: "lightgray",
               }}
             >
-              <Typography p={10}>map</Typography>
+              <CardMedia
+                sx={{ maxHeight: 240, minHeight: 240, overflow: "hidden" }}
+                component="img"
+                image={img}
+                alt={alt}
+              />
             </Box>
           </DialogContent>
         </Fragment>
