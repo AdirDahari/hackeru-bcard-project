@@ -1,4 +1,0 @@
-Card detail
-*
-- add map api to popup to all cards components
-*

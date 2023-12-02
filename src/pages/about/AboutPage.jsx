@@ -20,13 +20,13 @@ const itemData = [
 const AboutPage = () => {
   return (
     <Container sx={{ my: 5, minHeight: "90vh" }}>
-      <Grid container spacing={4} display={{ xs: "block", sm: "flex" }}>
-        <Grid item xs={12} sm={12} md={8}>
+      <Typography variant="h1">About us</Typography>
+      <Typography variant="h4">
+        Here you can hear about us and our website
+      </Typography>
+      <Grid container spacing={4}>
+        <Grid item xs={12} sm={12} md={12} lg={7}>
           <Fragment>
-            <Typography variant="h1">About us</Typography>
-            <Typography variant="h4">
-              Here you can hear about us and our website
-            </Typography>
             <Divider sx={{ m: 2 }} />
             <Typography variant="h5" sx={{ fontWeight: "bold", p: 1 }}>
               Our Story
@@ -60,7 +60,7 @@ const AboutPage = () => {
             </Typography>
           </Fragment>
         </Grid>
-        <Grid item xs={12} sm={12} md={4}>
+        <Grid item xs={12} sm={12} md={12} lg={5}>
           <ImageList sx={{ width: 550, height: 650 }} cols={3} rowHeight={164}>
             {itemData.map((item, index) => (
               <ImageListItem key={index}>

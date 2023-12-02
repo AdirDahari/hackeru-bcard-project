@@ -87,10 +87,10 @@ const PopupComponent = ({
             </Box>
             <Box
               sx={{
-                maxWidth: "240px",
+                maxWidth: "300px",
+                maxHeight: "400px",
                 p: 1,
                 m: 2,
-                backgroundColor: "lightgray",
               }}
             >
               <CardMedia
