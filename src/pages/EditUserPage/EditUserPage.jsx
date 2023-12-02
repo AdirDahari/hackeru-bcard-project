@@ -9,7 +9,7 @@ import axios from "axios";
 import ROUTES from "../../routes/ROUTES";
 import { errorToast, infoToast } from "../../messages/myToasts";
 import { useNavigate, useParams } from "react-router-dom";
-import { Divider } from "@mui/material";
+import { Container, Divider } from "@mui/material";
 import { validateEditUser } from "../../validation/editUserValidation";
 import { normalizeEditUser } from "./normalizeEditUser";
 
@@ -73,12 +73,12 @@ const EditUserPage = () => {
   };
 
   return (
-    <Fragment>
-      <Typography variant="h3">Update User Page</Typography>
+    <Container sx={{ minHeight: "90vh", mt: 5 }}>
+      <Typography variant="h2">Update User Page</Typography>
       <Divider sx={{ m: 2 }} />
       <Box
         sx={{
-          marginTop: 2,
+          marginTop: 5,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -291,7 +291,7 @@ const EditUserPage = () => {
           </Grid>
         </Grid>
       </Box>
-    </Fragment>
+    </Container>
   );
 };
 

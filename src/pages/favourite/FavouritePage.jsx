@@ -58,7 +58,7 @@ const FavouritePage = () => {
   };
 
   return (
-    <Container>
+    <Container sx={{ minHeight: "90vh" }}>
       <Typography variant="h1">Favourite cards</Typography>
       <Typography variant="h4">
         Here you can find your favourite cards

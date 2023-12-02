@@ -63,7 +63,7 @@ const LoginPage = () => {
   };
 
   return (
-    <Grid container component="main" sx={{ height: "100vh" }}>
+    <Grid container component="main" sx={{ minHeight: "90vh" }}>
       <CssBaseline />
       <Grid
         item

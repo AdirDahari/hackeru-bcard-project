@@ -104,7 +104,7 @@ const HomePage = () => {
   };
 
   return (
-    <Container>
+    <Container sx={{ minHeight: "90vh" }}>
       <Typography variant="h1">Card Page</Typography>
       <Typography variant="h4">Here you can find business cards</Typography>
       <Divider sx={{ m: 2 }} />

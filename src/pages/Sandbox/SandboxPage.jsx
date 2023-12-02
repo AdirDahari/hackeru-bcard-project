@@ -19,7 +19,7 @@ const SandboxPage = () => {
   };
 
   return (
-    <Container>
+    <Container sx={{ minHeight: "90vh" }}>
       <Typography variant="h1">Sandbox</Typography>
       <Typography sx={{ my: 1 }} variant="h4">
         Manage bcards users and cards

@@ -10,6 +10,7 @@ import {
   FormControlLabel,
   Box,
   Avatar,
+  Container,
 } from "@mui/material";
 import axios from "axios";
 import { normalizeData } from "./normalizeData";
@@ -66,8 +67,9 @@ const RegisterPage = () => {
   };
 
   return (
-    <Box
+    <Container
       sx={{
+        minHeight: "90vh",
         marginTop: 8,
         display: "flex",
         flexDirection: "column",
@@ -304,7 +306,7 @@ const RegisterPage = () => {
           </Grid>
         </Grid>
       </Box>
-    </Box>
+    </Container>
   );
 };
 

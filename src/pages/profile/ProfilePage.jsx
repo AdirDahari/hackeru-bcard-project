@@ -92,7 +92,7 @@ const ProfilePage = () => {
   };
 
   return (
-    <Container>
+    <Container sx={{ minHeight: "90vh" }}>
       <Grid container>
         <Grid item xs={12} sm={8} md={7}>
           <Typography variant="h3" p={2}>

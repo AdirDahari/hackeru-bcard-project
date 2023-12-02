@@ -19,7 +19,7 @@ const itemData = [
 
 const AboutPage = () => {
   return (
-    <Container sx={{ my: 5 }}>
+    <Container sx={{ my: 5, minHeight: "90vh" }}>
       <Grid container spacing={4} display={{ xs: "block", sm: "flex" }}>
         <Grid item xs={12} sm={12} md={8}>
           <Fragment>
